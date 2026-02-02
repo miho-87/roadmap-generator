@@ -5,7 +5,13 @@
       "title": "First Project",
       "startDate": "2025-12-31",
       "endDate": "2026-03-31",
-      "category": "Memory Systems"
+      "category": "Memory Systems",
+      "_pos": {
+        "left": -0.2625570776255708,
+        "width": 24.65753424657534,
+        "right": 24.394977168949772
+      },
+      "_row": 0
     }
   ],
   "meta": {
