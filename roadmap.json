@@ -17,8 +17,14 @@
       "id": "7493bde6-b256-4c18-a903-e8a2be4da444",
       "title": "Project 2",
       "startDate": "2026-03-31",
-      "endDate": "2026-03-31",
-      "category": "Core Reasoning"
+      "endDate": "2026-06-30",
+      "category": "Core Reasoning",
+      "_pos": {
+        "left": 24.394977168949772,
+        "width": 0.5,
+        "right": 24.894977168949772
+      },
+      "_row": 0
     }
   ],
   "meta": {
