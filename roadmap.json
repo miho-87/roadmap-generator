@@ -38,7 +38,13 @@
       "title": "Viertes P",
       "startDate": "2026-03-31",
       "endDate": "2026-06-30",
-      "category": "Core Reasoning"
+      "category": "Memory Systems",
+      "_pos": {
+        "left": 24.394977168949772,
+        "width": 24.931506849315063,
+        "right": 49.326484018264836
+      },
+      "_row": 0
     }
   ],
   "meta": {
