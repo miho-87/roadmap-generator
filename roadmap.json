@@ -1,0 +1,14 @@
+{
+  "projects": [
+    {
+      "id": "ae93a52c-5a64-4787-8fd8-e48a175cebf6",
+      "title": "First Project",
+      "startDate": "2025-12-31",
+      "endDate": "2026-03-31",
+      "category": "Memory Systems"
+    }
+  ],
+  "meta": {
+    "version": 1
+  }
+}
