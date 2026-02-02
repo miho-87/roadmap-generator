@@ -1,53 +1,148 @@
 {
+  "meta": {
+    "version": 1,
+    "lastUpdated": "2026-02-03T10:00:00Z"
+  },
   "projects": [
     {
-      "id": "ae93a52c-5a64-4787-8fd8-e48a175cebf6",
-      "title": "First Project",
-      "startDate": "2025-12-31",
-      "endDate": "2026-03-31",
-      "category": "Memory Systems",
-      "_pos": {
-        "left": -0.2625570776255708,
-        "width": 24.65753424657534,
-        "right": 24.394977168949772
-      },
-      "_row": 0
+      "id": "p1",
+      "title": "Context Window Expansion",
+      "startDate": "2026-01-15",
+      "endDate": "2026-03-30",
+      "category": "Core Reasoning"
     },
     {
-      "id": "7493bde6-b256-4c18-a903-e8a2be4da444",
-      "title": "Project 2",
-      "startDate": "2026-03-31",
+      "id": "p2",
+      "title": "Multi-Step Reasoning Engine",
+      "startDate": "2026-04-01",
       "endDate": "2026-06-30",
-      "category": "Infrastructure",
-      "_pos": {
-        "left": 24.394977168949772,
-        "width": 24.931506849315063,
-        "right": 49.326484018264836
-      },
-      "_row": 0
+      "category": "Core Reasoning"
     },
     {
-      "id": "b47fa759-915a-4101-b32b-7bef08d662bd",
-      "title": "Drittes P",
-      "startDate": "2025-12-31",
-      "endDate": "2026-03-31",
+      "id": "p3",
+      "title": "Vector DB Optimization",
+      "startDate": "2026-02-01",
+      "endDate": "2026-04-15",
       "category": "Memory Systems"
     },
     {
-      "id": "c7e99b3b-97ed-49e2-a46e-f1a788f07c39",
-      "title": "Viertes P",
-      "startDate": "2026-03-31",
+      "id": "p4",
+      "title": "Long-term Episodic Memory",
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-30",
+      "category": "Memory Systems"
+    },
+    {
+      "id": "p5",
+      "title": "GitHub API Integration",
+      "startDate": "2026-01-10",
+      "endDate": "2026-02-28",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p6",
+      "title": "Slack Bot V2",
+      "startDate": "2026-03-15",
+      "endDate": "2026-05-15",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p7",
+      "title": "Jira Two-Way Sync",
+      "startDate": "2026-06-01",
+      "endDate": "2026-09-01",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p8",
+      "title": "Safety Guardrails Alpha",
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p9",
+      "title": "RLHF Pipeline Setup",
+      "startDate": "2026-04-01",
+      "endDate": "2026-07-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p10",
+      "title": "Kubernetes Cluster Auto-scaling",
+      "startDate": "2026-02-15",
+      "endDate": "2026-05-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p11",
+      "title": "Edge Inference Nodes",
+      "startDate": "2026-07-01",
+      "endDate": "2026-10-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p12",
+      "title": "Dashboard Redesign",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-30",
+      "category": "Frontend"
+    },
+    {
+      "id": "p13",
+      "title": "Mobile App Beta",
+      "startDate": "2026-06-15",
+      "endDate": "2026-09-15",
+      "category": "Frontend"
+    },
+    {
+      "id": "p14",
+      "title": "User Behavior Analytics",
+      "startDate": "2026-02-01",
+      "endDate": "2026-04-01",
+      "category": "Analytics"
+    },
+    {
+      "id": "p15",
+      "title": "Transformer Architecture 2.0",
+      "startDate": "2026-01-01",
       "endDate": "2026-06-30",
-      "category": "Memory Systems",
-      "_pos": {
-        "left": 24.668949771689498,
-        "width": 24.657534246575338,
-        "right": 49.326484018264836
-      },
-      "_row": 2
+      "category": "Research"
+    },
+    {
+      "id": "p16",
+      "title": "Prompt Injection Defense",
+      "startDate": "2026-03-01",
+      "endDate": "2026-05-01",
+      "category": "Research"
+    },
+    {
+      "id": "p17",
+      "title": "Self-Correction Loop",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-30",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "p18",
+      "title": "Graph Database Migration",
+      "startDate": "2026-08-01",
+      "endDate": "2026-11-30",
+      "category": "Memory Systems"
+    },
+    {
+      "id": "p19",
+      "title": "Notion Integration",
+      "startDate": "2026-09-01",
+      "endDate": "2026-10-30",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p20",
+      "title": "Bias Detection Module",
+      "startDate": "2026-08-01",
+      "endDate": "2026-12-31",
+      "category": "Alignment"
     }
-  ],
-  "meta": {
-    "version": 1
-  }
+  ]
 }
