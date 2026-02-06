@@ -31,6 +31,14 @@
 
     --text-on-track: #ffffff;
     /* White text on dark/vibrant tracks */
+
+    /* Input Colors (Vibrant) */
+    --bg-input: #374151;
+    /* gray-700 */
+    --text-input: #ffffff;
+    /* white */
+    --border-input: #4b5563;
+    /* gray-600 */
 }
 
 /* Business Theme (Light/Professional) */
@@ -50,26 +58,29 @@
     --text-accent: #2563eb;
     /* blue-600 */
 
-    /* Track Colors (Pastel/Light for Business) */
-    --track-blue: #bfdbfe;
-    /* blue-200 */
-    --track-purple: #e9d5ff;
-    /* violet-200 */
-    --track-green: #bbf7d0;
-    /* emerald-200 */
-    --track-orange: #fed7aa;
-    /* orange-200 */
-    --track-pink: #fbcfe8;
-    /* pink-200 */
-    --track-teal: #99f6e4;
-    /* teal-200 */
-    --track-indigo: #c7d2fe;
-    /* indigo-200 */
-    --track-red: #fecaca;
-    /* red-200 */
+    /* Track Colors (High Contrast for Business: Black Bg / White Text) */
+    /* We make them all dark/black, effectively ignoring the color distinction for background,
+       but we could keep subtle tint or just pure black as requested.
+       Let's use a very dark slate, almost black. */
+    --track-blue: #0f172a;
+    --track-purple: #0f172a;
+    --track-green: #0f172a;
+    --track-orange: #0f172a;
+    --track-pink: #0f172a;
+    --track-teal: #0f172a;
+    --track-indigo: #0f172a;
+    --track-red: #0f172a;
 
-    --text-on-track: #0f172a;
-    /* Dark text on pastel tracks */
+    --text-on-track: #ffffff;
+    /* White text on black tracks */
+
+    /* Input Colors (Business) */
+    --bg-input: #ffffff;
+    /* white */
+    --text-input: #0f172a;
+    /* slate-900 */
+    --border-input: #cbd5e1;
+    /* slate-300 */
 }
 
 body {

@@ -14,7 +14,13 @@ export default {
                     border: 'var(--border-color)',
                     text: 'var(--text-primary)',
                     muted: 'var(--text-muted)',
+                    muted: 'var(--text-muted)',
                     accent: 'var(--text-accent)',
+                },
+                input: {
+                    bg: 'var(--bg-input)',
+                    text: 'var(--text-input)',
+                    border: 'var(--border-input)',
                 },
                 track: {
                     blue: 'var(--track-blue)',

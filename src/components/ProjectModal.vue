@@ -59,17 +59,17 @@ const save = () => {
           <div class="space-y-4">
               <div>
                   <label class="block text-xs uppercase text-app-muted mb-1">Title</label>
-                  <input v-model="form.title" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text focus:border-blue-500 outline-none" placeholder="Project Name" />
+                  <input v-model="form.title" class="w-full bg-input-bg border border-input-border rounded p-2 text-input-text focus:border-blue-500 outline-none" placeholder="Project Name" />
               </div>
               
               <div class="grid grid-cols-2 gap-4">
                   <div>
                       <label class="block text-xs uppercase text-app-muted mb-1">Start Date</label>
-                      <input type="date" v-model="form.startDate" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text" />
+                      <input type="date" v-model="form.startDate" class="w-full bg-input-bg border border-input-border rounded p-2 text-input-text" />
                   </div>
                   <div>
                       <label class="block text-xs uppercase text-app-muted mb-1">End Date</label>
-                      <input type="date" v-model="form.endDate" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text" />
+                      <input type="date" v-model="form.endDate" class="w-full bg-input-bg border border-input-border rounded p-2 text-input-text" />
                   </div>
               </div>
               
@@ -80,7 +80,7 @@ const save = () => {
               
               <div>
                   <label class="block text-xs uppercase text-app-muted mb-1">Category</label>
-                  <select v-model="form.category" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text">
+                  <select v-model="form.category" class="w-full bg-input-bg border border-input-border rounded p-2 text-input-text">
                       <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
                   </select>
               </div>
