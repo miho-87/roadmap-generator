@@ -162,6 +162,9 @@ export const listSnapshots = async () => {
             owner,
             repo,
             path: "snapshots",
+            headers: {
+                "If-None-Match": "" // Force fresh fetch, bypass cache
+            }
         });
 
         // Filter valid json files
