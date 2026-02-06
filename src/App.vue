@@ -343,10 +343,13 @@ const currentViewDate = computed(() => {
                 </button>
             </div>
             <div class="space-x-4">
-                 <button @click="handleExport" class="text-sm text-app-muted hover:text-app-text">📷 Export</button>
+                  <template v-if="!isSnapshotMode">
+                     <button @click="isSettingsOpen = true" class="text-sm text-app-muted hover:text-app-text pointer-events-auto z-50 relative">⚙️ Settings</button>
+                     <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
+                     <button @click="openSnapshotBrowser" class="text-sm text-purple-400 hover:text-purple-300">📂 Snapshots</button>
+                 </template>
                  
-                 <template v-if="!isSnapshotMode">
-                 <button @click="handleExport" class="text-sm text-pink-400 hover:text-pink-300">� Export PNG</button>
+                 <button @click="handleExport" class="text-sm text-pink-400 hover:text-pink-300">📷 Export PNG</button>
                  <button @click="logout" class="text-sm text-gray-400 hover:text-white">Logout</button>
             </div>
         </header>
