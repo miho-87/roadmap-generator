@@ -18,7 +18,19 @@ const repoName = ref(localStorage.getItem('gh_repo') || 'roadmap-generator');
 const isAuthenticated = ref(false);
 const loading = ref(false);
 const error = ref('');
-const roadmap = ref({ projects: [], meta: { version: 1 } }); 
+const roadmap = ref({ projects: [], meta: { version: 2 }, settings: { categories: [], pis: [], theme: 'vibrant' } });
+
+const activeCategories = computed(() => {
+    // Fallback if settings are missing or empty
+    if (roadmap.value?.settings?.categories && roadmap.value.settings.categories.length > 0) {
+        return roadmap.value.settings.categories;
+    }
+    return [ "Core Reasoning", "Memory Systems", "Tool Integrations", "Alignment", "Infrastructure", "Frontend", "Analytics", "Research" ];
+});
+
+const themeClass = computed(() => {
+    return roadmap.value?.settings?.theme === 'business' ? 'theme-business' : 'theme-vibrant';
+});
 const currentYear = ref(new Date().getFullYear());
 const isPresentationMode = ref(false);
 
