@@ -42,7 +42,7 @@ const piLines = computed(() => {
     <div v-for="(pi, idx) in piLines" :key="idx" 
          class="absolute top-0 bottom-0 border-l-2 border-blue-500/50 z-10 pointer-events-none"
          :style="{ left: pi.left }">
-         <div class="absolute top-8 left-1 text-[10px] text-blue-400 font-bold opacity-75 whitespace-nowrap">
+         <div class="absolute top-0 left-1 text-[10px] text-blue-500 font-bold opacity-90 whitespace-nowrap bg-app-header/80 px-1 rounded shadow-sm border border-blue-200/20 z-20">
              {{ pi.label }}
          </div>
     </div>

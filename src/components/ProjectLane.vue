@@ -19,7 +19,7 @@ const stackedProjects = computed(() => {
 
 
 // Height depends on number of stacked rows (max 4). 
-// 4 rows * 28px = 112px is rough max. 
+// 4 rows * 36px = 144px is rough max. 
 // We enforce min height.
 </script>
 
@@ -35,7 +35,7 @@ const stackedProjects = computed(() => {
          This component renders the track content. -->
 
     <!-- Lane Content -->
-    <div class="relative w-full h-full min-h-[116px] py-1">
+    <div class="relative w-full h-full min-h-[148px] py-2">
         <div v-if="projects.length === 0" class="absolute inset-0 flex items-center justify-center text-app-muted text-xs opacity-0 group-hover:opacity-100 pointer-events-none">
             Click '+ Add' to start
         </div>

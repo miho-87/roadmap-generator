@@ -9,7 +9,7 @@ const style = computed(() => {
     return {
         left: props.project._pos.left + '%',
         width: props.project._pos.width + '%',
-        top: (props.project._row * 28) + 4 + 'px' // 28px height per row
+        top: (props.project._row * 36) + 4 + 'px' // 36px height per row (32px card + 4px gap)
     };
 });
 
@@ -32,7 +32,7 @@ const colorClass = computed(() => {
 </script>
 
 <template>
-  <div class="absolute h-6 rounded text-xs text-track-text px-2 py-0.5 whitespace-nowrap overflow-hidden cursor-pointer shadow transition-all z-20 flex items-center"
+  <div class="absolute h-8 rounded text-sm font-medium text-track-text px-3 py-1 whitespace-nowrap overflow-hidden cursor-pointer shadow-md border border-white/20 transition-all z-20 flex items-center hover:scale-[1.01] hover:shadow-lg"
        :class="colorClass"
        :style="style"
        :title="project.title + ' (' + project.startDate + ' - ' + project.endDate + ')'">
