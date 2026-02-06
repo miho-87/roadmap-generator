@@ -59,6 +59,19 @@ const openSnapshotBrowser = async () => {
     showSnapshotModal.value = true;
 };
 
+const navigateMonth = (delta) => {
+    let newMonth = startMonth.value + delta;
+    if (newMonth < 0) {
+        startMonth.value = 11;
+        startYear.value--;
+    } else if (newMonth > 11) {
+        startMonth.value = 0;
+        startYear.value++;
+    } else {
+        startMonth.value = newMonth;
+    }
+};
+
 const loadSelectedSnapshot = async (snapshot) => {
     loading.value = true;
     try {
@@ -285,11 +298,11 @@ const handleExport = async () => {
                     <h2 class="text-lg font-bold">{{ startYear }} / {{ startMonth + 1 }} - View</h2>
                     <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500 text-white shadow">+ Add Project</button>
                  </div>
-                 <!-- Navigation: +/- 1 Year -->
-                 <div class="space-x-2">
-                     <button @click="startYear--" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Prev Year</button>
-                     <button @click="startYear++" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Next Year</button>
-                 </div>
+                  <!-- Navigation: +/- 1 Month -->
+                  <div class="space-x-2">
+                      <button @click="navigateMonth(-1)" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Prev Month</button>
+                      <button @click="navigateMonth(1)" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Next Month</button>
+                  </div>
              </div>
              
              <!-- Presentation Toolbar overlay -->
@@ -304,7 +317,8 @@ const handleExport = async () => {
                  
                  <!-- Sidebar (Y-Axis Labels) -->
                  <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-20 flex flex-col pt-8 shadow-sm">
-                     <div v-for="cat in activeCategories" :key="cat" class="h-[116px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted">
+                     <div class="h-6 border-b border-app-border bg-app-bg/50"></div> <!-- PI Spacer -->
+                     <div v-for="cat in activeCategories" :key="cat" class="h-[148px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted">
                          {{ cat }}
                      </div>
                  </div>
@@ -318,7 +332,7 @@ const handleExport = async () => {
                         </div>
                         
                         <!-- Tracks Layer (Foreground) -->
-                        <div class="relative z-10 pt-8">
+                        <div class="relative z-10 pt-14">
                             <ProjectLane v-for="cat in activeCategories" :key="cat" 
                                 :category="cat"
                                 :startYear="startYear"

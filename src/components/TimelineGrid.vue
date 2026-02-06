@@ -38,13 +38,26 @@ const piLines = computed(() => {
 
     <!-- Grid Background Lines (Optional, maybe handled by parent track components) -->
     
-    <!-- PI Milestones -->
-    <div v-for="(pi, idx) in piLines" :key="idx" 
-         class="absolute top-0 bottom-0 border-l-2 border-blue-500/50 z-10 pointer-events-none"
+    <!-- PI Header Row -->
+    <div class="relative w-full h-6 border-b border-app-border bg-app-header/50">
+        <div v-for="(pi, idx) in piLines" :key="idx" 
+             class="absolute top-0 bottom-0 border-l border-blue-500/30 z-10"
+             :style="{ left: pi.left }">
+             <div class="absolute top-0 left-1 text-[10px] text-blue-600 font-bold whitespace-nowrap bg-blue-100/80 px-1 rounded-sm mt-0.5">
+                 {{ pi.label }}
+             </div>
+        </div>
+    </div>
+
+    <!-- Grid Background Lines -->
+    <div class="relative w-full h-full"> 
+         <!-- Vertical lines for months could go here -->
+    </div>
+
+    <!-- PI Vertical Lines (Full Height) -->
+    <div v-for="(pi, idx) in piLines" :key="'line'+idx" 
+         class="absolute top-8 bottom-0 border-l-2 border-blue-500/20 z-0 pointer-events-none"
          :style="{ left: pi.left }">
-         <div class="absolute top-0 left-1 text-[10px] text-blue-500 font-bold opacity-90 whitespace-nowrap bg-app-header/80 px-1 rounded shadow-sm border border-blue-200/20 z-20">
-             {{ pi.label }}
-         </div>
     </div>
   </div>
 </template>

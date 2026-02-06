@@ -4,6 +4,17 @@ export default {
         "./index.html",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
     ],
+    safelist: [
+        'bg-track-blue',
+        'bg-track-purple',
+        'bg-track-green',
+        'bg-track-orange',
+        'bg-track-pink',
+        'bg-track-teal',
+        'bg-track-indigo',
+        'bg-track-red',
+        'text-track-text'
+    ],
     theme: {
         extend: {
             colors: {
