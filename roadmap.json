@@ -227,9 +227,15 @@
     {
       "id": "513af133-0f3b-4c61-be94-b4a507277d21",
       "title": "test",
-      "startDate": "2026-02-06",
-      "endDate": "2026-12-06",
-      "category": "Core"
+      "startDate": "2026-03-22",
+      "endDate": "2026-12-12",
+      "category": "Core",
+      "_pos": {
+        "left": 1.3812785388127853,
+        "width": 83.01369863013699,
+        "right": 84.39497716894977
+      },
+      "_row": 0
     }
   ]
 }
