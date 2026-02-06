@@ -42,9 +42,15 @@
     {
       "id": "p1",
       "title": "Context Window Expansion",
-      "startDate": "2026-01-15",
-      "endDate": "2026-03-30",
-      "category": "Core Reasoning"
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Core Reasoning",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
     },
     {
       "id": "p2",
