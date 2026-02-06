@@ -1,0 +1,235 @@
+{
+  "meta": {
+    "version": 2,
+    "lastUpdated": "2026-02-06T20:00:00Z"
+  },
+  "settings": {
+    "theme": "vibrant",
+    "categories": [
+      "Core",
+      "Memory Systems",
+      "Tool Integrations",
+      "Alignment",
+      "Infrastructure",
+      "Frontend",
+      "Analytics",
+      "Research"
+    ],
+    "pis": [
+      {
+        "name": "PI 2026.11",
+        "start": "2026-03-22",
+        "end": "2026-06-28"
+      },
+      {
+        "name": "PI 2026.22",
+        "start": "2026-06-29",
+        "end": "2026-09-22"
+      },
+      {
+        "name": "PI 2026.35",
+        "start": "2026-09-23",
+        "end": "2026-12-12"
+      },
+      {
+        "name": "PI 2026.47",
+        "start": "2026-12-13",
+        "end": "2027-02-28"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Context Window Expansion",
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Core Reasoning",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
+    },
+    {
+      "id": "p2",
+      "title": "Multi-Step Reasoning Engine",
+      "startDate": "2026-04-01",
+      "endDate": "2026-06-30",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "p3",
+      "title": "Vector DB Optimization",
+      "startDate": "2026-03-22",
+      "endDate": "2026-12-13",
+      "category": "Memory Systems",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
+    },
+    {
+      "id": "p4",
+      "title": "Long-term Episodic Memory",
+      "startDate": "2026-05-01",
+      "endDate": "2026-08-30",
+      "category": "Memory Systems"
+    },
+    {
+      "id": "p5",
+      "title": "GitHub API Integration",
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
+    },
+    {
+      "id": "p6",
+      "title": "Slack Bot V2",
+      "startDate": "2026-03-15",
+      "endDate": "2026-05-15",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p7",
+      "title": "Jira Two-Way Sync",
+      "startDate": "2026-06-01",
+      "endDate": "2026-09-01",
+      "category": "Tool Integrations"
+    },
+    {
+      "id": "p8",
+      "title": "Safety Guardrails Alpha",
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p9",
+      "title": "RLHF Pipeline Setup",
+      "startDate": "2026-04-01",
+      "endDate": "2026-07-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p10",
+      "title": "Kubernetes Cluster Auto-scaling",
+      "startDate": "2026-02-15",
+      "endDate": "2026-05-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p11",
+      "title": "Edge Inference Nodes",
+      "startDate": "2026-07-01",
+      "endDate": "2026-10-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p12",
+      "title": "Dashboard Redesign",
+      "startDate": "2026-03-01",
+      "endDate": "2026-04-30",
+      "category": "Frontend"
+    },
+    {
+      "id": "p13",
+      "title": "Mobile App Beta",
+      "startDate": "2026-06-15",
+      "endDate": "2026-09-15",
+      "category": "Frontend"
+    },
+    {
+      "id": "p14",
+      "title": "User Behavior Analytics",
+      "startDate": "2026-02-01",
+      "endDate": "2026-04-01",
+      "category": "Analytics"
+    },
+    {
+      "id": "p15",
+      "title": "Transformer Architecture 2.0",
+      "startDate": "2026-01-01",
+      "endDate": "2026-06-30",
+      "category": "Research"
+    },
+    {
+      "id": "p16",
+      "title": "Prompt Injection Defense",
+      "startDate": "2026-03-01",
+      "endDate": "2026-05-01",
+      "category": "Research"
+    },
+    {
+      "id": "p17",
+      "title": "Self-Correction Loop",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-30",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "p18",
+      "title": "Graph Database Migration",
+      "startDate": "2026-08-01",
+      "endDate": "2026-11-30",
+      "category": "Memory Systems"
+    },
+    {
+      "id": "p19",
+      "title": "Notion Integration",
+      "startDate": "2026-09-22",
+      "endDate": "2026-12-13",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 58.09360730593607,
+        "width": 16.164383561643838,
+        "right": 74.2579908675799
+      },
+      "_row": 2
+    },
+    {
+      "id": "p20",
+      "title": "Bias Detection Module",
+      "startDate": "2026-08-01",
+      "endDate": "2026-12-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "3b348252-b90d-44e3-af61-5cb5125fd46f",
+      "title": "abc",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": ""
+    },
+    {
+      "id": "d08cc872-9d14-4fe7-85ef-3ec8eb7867b8",
+      "title": "abc",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": ""
+    },
+    {
+      "id": "3f95dc80-4d40-44b4-9e70-21e13011cec3",
+      "title": "test",
+      "startDate": "2026-02-06",
+      "endDate": "2026-12-06",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "513af133-0f3b-4c61-be94-b4a507277d21",
+      "title": "test",
+      "startDate": "2026-02-06",
+      "endDate": "2026-12-06",
+      "category": "Core"
+    }
+  ]
+}
