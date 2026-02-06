@@ -223,6 +223,13 @@
       "startDate": "2026-02-06",
       "endDate": "2026-12-06",
       "category": "Core Reasoning"
+    },
+    {
+      "id": "513af133-0f3b-4c61-be94-b4a507277d21",
+      "title": "test",
+      "startDate": "2026-02-06",
+      "endDate": "2026-12-06",
+      "category": "Core"
     }
   ]
 }
