@@ -234,13 +234,13 @@
     {
       "id": "p19",
       "title": "Notion Integration",
-      "startDate": "2026-09-22",
+      "startDate": "2026-09-24",
       "endDate": "2026-12-12",
       "category": "Tool Integrations",
       "_pos": {
         "left": 63.84703196347032,
-        "width": 22.465753424657528,
-        "right": 86.31278538812785
+        "width": 22.19178082191781,
+        "right": 86.03881278538813
       },
       "_row": 1
     },
