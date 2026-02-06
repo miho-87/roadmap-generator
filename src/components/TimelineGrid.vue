@@ -28,10 +28,10 @@ const piLines = computed(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-full border-b border-gray-700">
+  <div class="relative w-full h-full border-b border-app-border">
     <!-- Month Headers -->
-    <div class="flex w-full h-8 text-xs text-gray-400 border-b border-gray-700 bg-gray-800">
-        <div v-for="month in months" :key="month.name" class="flex-1 border-r border-gray-700 flex items-center justify-center">
+    <div class="flex w-full h-8 text-xs text-app-muted border-b border-app-border bg-app-header">
+        <div v-for="month in months" :key="month.name" class="flex-1 border-r border-app-border flex items-center justify-center">
             {{ month.name }}
         </div>
     </div>

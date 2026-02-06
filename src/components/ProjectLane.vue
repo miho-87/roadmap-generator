@@ -24,7 +24,7 @@ const stackedProjects = computed(() => {
 </script>
 
 <template>
-  <div class="relative w-full border-b border-gray-700 bg-gray-900/50 min-h-[40px] hover:bg-gray-800 transition-colors group">
+  <div class="relative w-full border-b border-app-border bg-app-bg/50 min-h-[40px] hover:bg-app-panel transition-colors group">
     
     <!-- Category Label (Left Axis) - technically overlay or separate col? -->
     <!-- Requirement: "On the left Y-axis". 
@@ -36,7 +36,7 @@ const stackedProjects = computed(() => {
 
     <!-- Lane Content -->
     <div class="relative w-full h-full min-h-[116px] py-1">
-        <div v-if="projects.length === 0" class="absolute inset-0 flex items-center justify-center text-gray-700 text-xs opacity-0 group-hover:opacity-100 pointer-events-none">
+        <div v-if="projects.length === 0" class="absolute inset-0 flex items-center justify-center text-app-muted text-xs opacity-0 group-hover:opacity-100 pointer-events-none">
             Click '+ Add' to start
         </div>
 

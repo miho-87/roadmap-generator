@@ -51,36 +51,36 @@ const save = () => {
 
 <template>
   <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div class="bg-gray-800 rounded-lg shadow-2xl p-6 w-full max-w-lg border border-gray-700">
-          <h3 class="text-xl font-bold mb-4 text-white">
+      <div class="bg-app-panel rounded-lg shadow-2xl p-6 w-full max-w-lg border border-app-border">
+          <h3 class="text-xl font-bold mb-4 text-app-text">
               {{ project ? 'Edit Project' : 'New Project' }}
           </h3>
           
           <div class="space-y-4">
               <div>
-                  <label class="block text-xs uppercase text-gray-500 mb-1">Title</label>
-                  <input v-model="form.title" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white focus:border-blue-500 outline-none" placeholder="Project Name" />
+                  <label class="block text-xs uppercase text-app-muted mb-1">Title</label>
+                  <input v-model="form.title" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text focus:border-blue-500 outline-none" placeholder="Project Name" />
               </div>
               
               <div class="grid grid-cols-2 gap-4">
                   <div>
-                      <label class="block text-xs uppercase text-gray-500 mb-1">Start Date</label>
-                      <input type="date" v-model="form.startDate" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white" />
+                      <label class="block text-xs uppercase text-app-muted mb-1">Start Date</label>
+                      <input type="date" v-model="form.startDate" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text" />
                   </div>
                   <div>
-                      <label class="block text-xs uppercase text-gray-500 mb-1">End Date</label>
-                      <input type="date" v-model="form.endDate" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white" />
+                      <label class="block text-xs uppercase text-app-muted mb-1">End Date</label>
+                      <input type="date" v-model="form.endDate" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text" />
                   </div>
               </div>
               
               <div class="flex items-center space-x-2">
-                  <input type="checkbox" v-model="alignToPI" id="snap" class="rounded bg-gray-700 border-gray-600 text-blue-600 focus:ring-blue-500">
-                  <label for="snap" class="text-sm text-gray-300">Align to PI (Snap to Quarter)</label>
+                  <input type="checkbox" v-model="alignToPI" id="snap" class="rounded bg-app-bg border-app-border text-blue-600 focus:ring-blue-500">
+                  <label for="snap" class="text-sm text-app-muted">Align to PI (Snap to Quarter)</label>
               </div>
               
               <div>
-                  <label class="block text-xs uppercase text-gray-500 mb-1">Category</label>
-                  <select v-model="form.category" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-white">
+                  <label class="block text-xs uppercase text-app-muted mb-1">Category</label>
+                  <select v-model="form.category" class="w-full bg-app-bg border border-app-border rounded p-2 text-app-text">
                       <option v-for="cat in categories" :key="cat" :value="cat">{{ cat }}</option>
                   </select>
               </div>
@@ -91,7 +91,7 @@ const save = () => {
               <div v-else></div> <!-- Spacer -->
               
               <div class="space-x-3">
-                  <button @click="$emit('close')" class="px-4 py-2 rounded text-gray-300 hover:bg-gray-700">Cancel</button>
+                  <button @click="$emit('close')" class="px-4 py-2 rounded text-app-muted hover:bg-app-bg hover:text-app-text">Cancel</button>
                   <button @click="save" class="px-4 py-2 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold">Save Changes</button>
               </div>
           </div>

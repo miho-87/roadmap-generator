@@ -15,11 +15,14 @@ const style = computed(() => {
 
 // Vibrant colors based on something (e.g., hash or category)
 const colors = [
-    'bg-blue-600 hover:bg-blue-500',
-    'bg-purple-600 hover:bg-purple-500',
-    'bg-green-600 hover:bg-green-500',
-    'bg-orange-600 hover:bg-orange-500',
-    'bg-pink-600 hover:bg-pink-500'
+    'bg-track-blue hover:brightness-110',
+    'bg-track-purple hover:brightness-110',
+    'bg-track-green hover:brightness-110',
+    'bg-track-orange hover:brightness-110',
+    'bg-track-pink hover:brightness-110',
+    'bg-track-teal hover:brightness-110',
+    'bg-track-indigo hover:brightness-110',
+    'bg-track-red hover:brightness-110'
 ];
 const colorClass = computed(() => {
     // Simple pseudo-random color based on title length or char

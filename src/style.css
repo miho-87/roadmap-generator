@@ -3,67 +3,56 @@
 @tailwind utilities;
 
 :root {
-    --bg-color: #111827;
-    --sidebar-color: #1f2937;
-    --text-main: #ffffff;
-    --card-blue: #2563eb;
+    /* Vibrant Theme (Default) */
+    --bg-app: #111827;       /* gray-900 */
+    --bg-panel: #1f2937;     /* gray-800 */
+    --bg-header: #1f2937;    /* gray-800 */
+    --border-color: #374151; /* gray-700 */
+    --text-primary: #f9fafb; /* gray-50 */
+    --text-muted: #9ca3af;   /* gray-400 */
+    --text-accent: #60a5fa;  /* blue-400 */
+    
+    /* Track Colors (Vibrant) */
+    --track-blue: #2563eb;
+    --track-purple: #9333ea;
+    --track-green: #16a34a;
+    --track-orange: #ea580c;
+    --track-pink: #db2777;
+    --track-teal: #0d9488;
+    --track-indigo: #4f46e5;
+    --track-red: #dc2626;
 }
 
-/* Vibrant Theme (Default Dark) */
-.theme-vibrant {
-    /* Standard Tailwind colors used directly in classes */
-}
+/* Business Theme (Light/Professional) */
+.theme-business {
+    --bg-app: #f1f5f9;       /* slate-100 */
+    --bg-panel: #ffffff;     /* white */
+    --bg-header: #ffffff;    /* white */
+    --border-color: #cbd5e1; /* slate-300 */
+    --text-primary: #0f172a; /* slate-900 */
+    --text-muted: #64748b;   /* slate-500 */
+    --text-accent: #2563eb;  /* blue-600 */
 
-/* Business Theme (Muted) */
-.theme-business .bg-gray-900 {
-    background-color: #f3f4f6;
-    /* Light gray background */
-    color: #1e293b;
-}
-
-.theme-business .bg-gray-800 {
-    background-color: #ffffff;
-    color: #1e293b;
-    border-color: #e5e7eb;
-}
-
-.theme-business .text-white {
-    color: #1e293b;
-}
-
-.theme-business .text-gray-300,
-.theme-business .text-gray-400 {
-    color: #4b5563;
-}
-
-.theme-business .border-gray-700 {
-    border-color: #e5e7eb;
-}
-
-/* Muted Bar Colors */
-.theme-business .bg-blue-600 {
-    background-color: #334155;
-}
-
-/* Slate */
-.theme-business .bg-purple-600 {
-    background-color: #475569;
-}
-
-.theme-business .bg-green-600 {
-    background-color: #52525b;
-}
-
-/* Zinc */
-.theme-business .bg-orange-600 {
-    background-color: #64748b;
-}
-
-.theme-business .bg-pink-600 {
-    background-color: #94a3b8;
+    /* Track Colors (Muted/Professional) */
+    --track-blue: #3b82f6;   /* blue-500 */
+    --track-purple: #8b5cf6; /* violet-500 */
+    --track-green: #10b981;  /* emerald-500 */
+    --track-orange: #f97316; /* orange-500 */
+    --track-pink: #ec4899;   /* pink-500 */
+    --track-teal: #14b8a6;   /* teal-500 */
+    --track-indigo: #6366f1; /* indigo-500 */
+    --track-red: #ef4444;    /* red-500 */
 }
 
 body {
-    background-color: #111827;
-    color: white;
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Base utilities for transitions */
+.transition-colors {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
 }

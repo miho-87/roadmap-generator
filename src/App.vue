@@ -212,7 +212,8 @@ const handleExport = async () => {
 </script>
 
 <template>
-  <div class="bg-gray-900 min-h-screen text-white font-sans">
+<template>
+  <div class="bg-app-bg min-h-screen text-app-text font-sans transition-colors duration-300">
     
     <!-- Login Screen -->
     <div v-if="!isAuthenticated" class="flex flex-col items-center justify-center min-h-screen">
@@ -246,7 +247,7 @@ const handleExport = async () => {
 
     <!-- App Content -->
     <div v-else class="p-6 transition-all duration-500 min-h-screen" :class="[{ 'p-0': isPresentationMode }, themeClass]">
-        <header v-if="!isPresentationMode" class="flex justify-between items-center mb-6">
+        <header v-if="!isPresentationMode" class="flex justify-between items-center mb-6 bg-app-header p-4 rounded shadow-sm border border-app-border">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">Roadmap: {{ repoOwner }}/{{ repoName }}</h1>
                 <div v-if="isSnapshotMode" class="px-3 py-1 bg-purple-600 rounded text-sm font-bold flex items-center gap-2 animate-pulse">
@@ -258,10 +259,10 @@ const handleExport = async () => {
                 </button>
             </div>
             <div class="space-x-4">
-                 <button @click="handleExport" class="text-sm text-gray-400 hover:text-white">📷 Export</button>
+                 <button @click="handleExport" class="text-sm text-app-muted hover:text-app-text">📷 Export</button>
                  
                  <template v-if="!isSnapshotMode">
-                     <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white pointer-events-auto z-50 relative">⚙️ Settings</button>
+                     <button @click="isSettingsOpen = true" class="text-sm text-app-muted hover:text-app-text pointer-events-auto z-50 relative">⚙️ Settings</button>
                      <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
                      <button @click="openSnapshotBrowser" class="text-sm text-purple-400 hover:text-purple-300">📂 Snapshots</button>
                  </template>
@@ -271,20 +272,19 @@ const handleExport = async () => {
             </div>
         </header>
 
-        <div v-if="loading" class="text-center text-gray-400">Loading data...</div>
+        <div v-if="loading" class="text-center text-app-muted">Loading data...</div>
         
-        <div v-else-if="roadmap" id="roadmap-container" class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl transition-all"
+        <div v-else-if="roadmap" id="roadmap-container" class="bg-app-panel rounded-lg overflow-hidden border border-app-border shadow-xl transition-all"
              :class="{ 'fixed inset-0 z-[40] rounded-none border-0 h-screen': isPresentationMode }">
-             <!-- Toolbar -->
-             <div class="p-4 bg-gray-800 border-b border-gray-700 flex justify-between items-center" v-if="!isPresentationMode">
+             <div class="p-4 bg-app-header border-b border-app-border flex justify-between items-center" v-if="!isPresentationMode">
                  <div class="flex items-center space-x-4">
                     <h2 class="text-lg font-bold">{{ startYear }} / {{ startMonth + 1 }} - View</h2>
-                    <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500">+ Add Project</button>
+                    <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500 text-white shadow">+ Add Project</button>
                  </div>
                  <!-- Navigation: +/- 1 Year -->
                  <div class="space-x-2">
-                     <button @click="startYear--" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Prev Year</button>
-                     <button @click="startYear++" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Next Year</button>
+                     <button @click="startYear--" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Prev Year</button>
+                     <button @click="startYear++" class="px-2 py-1 bg-app-bg border border-app-border rounded text-xs hover:bg-app-panel text-app-muted hover:text-app-text">Next Year</button>
                  </div>
              </div>
              
@@ -296,11 +296,11 @@ const handleExport = async () => {
              </div>
 
              <!-- Roadmap View -->
-             <div class="flex flex-row min-h-[500px] border-t border-gray-700 relative h-full">
+             <div class="flex flex-row min-h-[500px] border-t border-app-border relative h-full">
                  
                  <!-- Sidebar (Y-Axis Labels) -->
-                 <div class="w-48 flex-shrink-0 bg-gray-800 border-r border-gray-700 z-20 flex flex-col pt-8">
-                     <div v-for="cat in activeCategories" :key="cat" class="h-[116px] border-b border-gray-700 flex items-center px-4 text-sm font-semibold text-gray-300">
+                 <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-20 flex flex-col pt-8 shadow-sm">
+                     <div v-for="cat in activeCategories" :key="cat" class="h-[116px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted">
                          {{ cat }}
                      </div>
                  </div>
