@@ -234,7 +234,6 @@ const logout = () => {
         <ProjectModal 
             :isOpen="isModalOpen" 
             :project="editingProject"
-            :project="editingProject"
             :year="startYear" 
             :categories="activeCategories"
             :settings="roadmap.settings"
