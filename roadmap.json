@@ -108,9 +108,15 @@
     {
       "id": "p7",
       "title": "Jira Two-Way Sync",
-      "startDate": "2026-06-01",
-      "endDate": "2026-09-01",
-      "category": "Tool Integrations"
+      "startDate": "2026-06-28",
+      "endDate": "2026-09-22",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 32.88812785388128,
+        "width": 25.20547945205479,
+        "right": 58.09360730593607
+      },
+      "_row": 2
     },
     {
       "id": "p8",
