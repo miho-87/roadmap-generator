@@ -212,8 +212,7 @@ const handleExport = async () => {
 </script>
 
 <template>
-<template>
-  <div class="bg-app-bg min-h-screen text-app-text font-sans transition-colors duration-300">
+<div class="min-h-screen text-app-text font-sans transition-colors duration-300 bg-app-bg" :class="themeClass">
     
     <!-- Login Screen -->
     <div v-if="!isAuthenticated" class="flex flex-col items-center justify-center min-h-screen">
@@ -246,7 +245,7 @@ const handleExport = async () => {
     </div>
 
     <!-- App Content -->
-    <div v-else class="p-6 transition-all duration-500 min-h-screen" :class="[{ 'p-0': isPresentationMode }, themeClass]">
+    <div v-else class="p-6 transition-all duration-500 min-h-screen" :class="{ 'p-0': isPresentationMode }">
         <header v-if="!isPresentationMode" class="flex justify-between items-center mb-6 bg-app-header p-4 rounded shadow-sm border border-app-border">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">Roadmap: {{ repoOwner }}/{{ repoName }}</h1>
