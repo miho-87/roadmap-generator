@@ -210,7 +210,13 @@
       "title": "test",
       "startDate": "2026-03-22",
       "endDate": "2026-12-12",
-      "category": "Core Reasoning"
+      "category": "Core Reasoning",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 1
     }
   ]
 }
