@@ -44,8 +44,6 @@ const now = new Date();
 const startYear = ref(now.getFullYear());
 const startMonth = ref(now.getMonth());
 
-const isPresentationMode = ref(false);
-
 // Snapshot State
 const isSnapshotMode = ref(false);
 const currentSnapshotName = ref('');
@@ -348,20 +346,14 @@ const currentViewDate = computed(() => {
                  <button @click="handleExport" class="text-sm text-app-muted hover:text-app-text">📷 Export</button>
                  
                  <template v-if="!isSnapshotMode">
-                     <button @click="isSettingsOpen = true" class="text-sm text-app-muted hover:text-app-text pointer-events-auto z-50 relative">⚙️ Settings</button>
-                     <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
-                     <button @click="openSnapshotBrowser" class="text-sm text-purple-400 hover:text-purple-300">📂 Snapshots</button>
-                 </template>
-                 
-                 <button @click="isPresentationMode = true" class="text-sm text-teal-400 hover:text-teal-300">Start Presentation</button>
+                 <button @click="handleExport" class="text-sm text-pink-400 hover:text-pink-300">� Export PNG</button>
                  <button @click="logout" class="text-sm text-gray-400 hover:text-white">Logout</button>
             </div>
         </header>
 
         <div v-if="loading" class="text-center text-app-muted">Loading data...</div>
         
-        <div v-else-if="roadmap" id="roadmap-container" class="bg-app-panel rounded-lg overflow-hidden border border-app-border shadow-xl transition-all"
-             :class="{ 'fixed inset-0 z-[40] rounded-none border-0 h-screen': isPresentationMode }">
+        <div v-else-if="roadmap" id="roadmap-container" class="bg-app-panel rounded-lg overflow-hidden border border-app-border shadow-xl transition-all h-[calc(100vh-100px)] flex flex-col">
              <div class="p-4 bg-app-header border-b border-app-border flex justify-between items-center" v-if="!isPresentationMode">
                  <div class="flex items-center space-x-4">
                     <h2 class="text-lg font-bold capitalize">{{ currentViewDate }}</h2>
@@ -374,13 +366,7 @@ const currentViewDate = computed(() => {
                   </div>
              </div>
              
-             <!-- Presentation Toolbar overlay -->
-             <div v-if="isPresentationMode" class="absolute bottom-4 right-4 z-50 opacity-0 hover:opacity-100 transition-opacity">
-                 <button @click="isPresentationMode = false" class="bg-black/50 hover:bg-black/80 text-white px-4 py-2 rounded backdrop-blur font-bold shadow-lg transform transition hover:scale-105">
-                     Exit Presentation
-                 </button>
-             </div>
-
+             <!-- Roadmap View (Unified Scroll Container) -->
              <div id="roadmap-view" class="flex-1 relative overflow-auto border-t border-app-border h-[calc(100vh-200px)]">
                  <div class="flex min-w-[max-content] min-h-full relative">
                     

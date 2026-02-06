@@ -5,8 +5,30 @@ GitHub Pages und GitLab Pages sind **statische Hoster**. Das bedeutet, sie liefe
 
 Das Problem "Gleichzeitiges Bearbeiten & Überschreiben verhindern" erfordert normalerweise einen Server, der die Änderungen koordiniert.
 
-Hier sind die Optionen für einen "einfachen Stack" auf dieser Basis:
+Hier sind die Optionen für einen "einfachen Stack" auf dieser# Tech Stack
 
+## Core Technologies
+
+-   **Frontend Framework:** Vue.js 3 (Composition API)
+-   **Build Tool:** Vite
+-   **Styling:** Tailwind CSS (with utility-first approach)
+-   **Programming Language:** JavaScript (ESNext)
+
+## Key Libraries
+
+-   **@octokit/rest:** GitHub API Client (Auth, Repo Access)
+-   **html2canvas:** PNG Export functionality
+
+## Architecture
+
+-   **Data Source:** `roadmap.json` hosted in a GitHub Repository.
+-   **State Management:** Reactive Vue `ref`s within `App.vue` (Single Store Pattern).
+-   **Deployment:** GitHub Pages (Static Hosting).
+
+## Design System
+
+-   **Themes:** CSS Variables for easy theming (Vibrant / Business).
+-   **Layout:** CSS Grid & Flexbox.
 ---
 
 ## Option A: "Git als Datenbank" (Serverless / API-First)
