@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
-import { formatDate, snapToPI } from '../utils/dates';
+import { formatDate, snapToPIStart, snapToPIEnd } from '../utils/dates';
 
 const props = defineProps({
     project: Object, // If null, new project
@@ -41,8 +41,8 @@ const save = () => {
     let data = { ...form.value };
     
     if (alignToPI.value) {
-        data.startDate = snapToPI(data.startDate, props.settings);
-        data.endDate = snapToPI(data.endDate, props.settings);
+        data.startDate = snapToPIStart(data.startDate, props.settings);
+        data.endDate = snapToPIEnd(data.endDate, props.settings, true); // true = -1 week buffer
     }
     
     emit('save', data);

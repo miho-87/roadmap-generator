@@ -50,31 +50,51 @@ export const dateToPercent = (dateStr, startYear, startMonth) => {
     return percent;
 };
 
-// Snap date to nearest PI boundary (Start or End)
-export const snapToPI = (dateStr, settings) => {
+// Snap date to nearest PI Start
+export const snapToPIStart = (dateStr, settings) => {
     if (!settings?.pis || settings.pis.length === 0) return dateStr;
 
     const target = new Date(dateStr).getTime();
-    let candidates = [];
+    let closest = null;
+    let minDiff = Infinity;
 
     settings.pis.forEach(pi => {
-        candidates.push(new Date(pi.start).getTime());
-        candidates.push(new Date(pi.end).getTime());
-    });
-
-    // Find closest boundary
-    let closest = candidates[0];
-    let minDiff = Math.abs(target - closest);
-
-    for (let i = 1; i < candidates.length; i++) {
-        const diff = Math.abs(target - candidates[i]);
+        const start = new Date(pi.start).getTime();
+        const diff = Math.abs(target - start);
         if (diff < minDiff) {
             minDiff = diff;
-            closest = candidates[i];
+            closest = pi.start;
         }
+    });
+
+    return closest ? new Date(closest).toISOString().split('T')[0] : dateStr;
+};
+
+// Snap date to nearest PI End (with optional 1 week buffer)
+export const snapToPIEnd = (dateStr, settings, withBuffer = false) => {
+    if (!settings?.pis || settings.pis.length === 0) return dateStr;
+
+    const target = new Date(dateStr).getTime();
+    let closest = null;
+    let minDiff = Infinity;
+
+    settings.pis.forEach(pi => {
+        const end = new Date(pi.end).getTime();
+        const diff = Math.abs(target - end);
+        if (diff < minDiff) {
+            minDiff = diff;
+            closest = pi.end;
+        }
+    });
+
+    if (!closest) return dateStr;
+
+    const finalDate = new Date(closest);
+    if (withBuffer) {
+        finalDate.setDate(finalDate.getDate() - 7); // 1 week buffer
     }
 
-    return new Date(closest).toISOString().split('T')[0];
+    return finalDate.toISOString().split('T')[0];
 };
 
 export const formatDate = (date) => {
