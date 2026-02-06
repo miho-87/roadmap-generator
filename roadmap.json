@@ -284,6 +284,13 @@
         "right": 84.39497716894977
       },
       "_row": 0
+    },
+    {
+      "id": "bfe4c3ed-5e80-4b03-9dab-3de78964fa00",
+      "title": "eins",
+      "startDate": "2026-03-22",
+      "endDate": "2026-03-22",
+      "category": "Core"
     }
   ]
 }
