@@ -167,7 +167,7 @@ const logout = () => {
             </div>
             <div class="space-x-4">
                  <button @click="handleExport" class="text-sm text-gray-400 hover:text-white">📷 Export</button>
-                 <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white">⚙️ Settings</button>
+                 <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white pointer-events-auto z-50 relative">⚙️ Settings</button>
                  <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
                  <button @click="isPresentationMode = true" class="text-sm text-teal-400 hover:text-teal-300">Start Presentation</button>
                  <button @click="logout" class="text-sm text-gray-400 hover:text-white">Logout</button>
@@ -184,10 +184,10 @@ const logout = () => {
                     <h2 class="text-lg font-bold">{{ startYear }} / {{ startMonth + 1 }} - View</h2>
                     <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500">+ Add Project</button>
                  </div>
-                 <!-- Simple Navigation: +/- 1 Month -->
+                 <!-- Navigation: +/- 1 Year -->
                  <div class="space-x-2">
-                     <button @click="()=>{ startMonth--; if(startMonth<0){startMonth=11; startYear--;}}" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Prev Month</button>
-                     <button @click="()=>{ startMonth++; if(startMonth>11){startMonth=0; startYear++;}}" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Next Month</button>
+                     <button @click="startYear--" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Prev Year</button>
+                     <button @click="startYear++" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Next Year</button>
                  </div>
              </div>
              
