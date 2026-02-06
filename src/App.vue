@@ -28,6 +28,9 @@ const activeCategories = computed(() => {
     return [ "Core Reasoning", "Memory Systems", "Tool Integrations", "Alignment", "Infrastructure", "Frontend", "Analytics", "Research" ];
 });
 
+const isSettingsOpen = ref(false);
+const hasUpdates = ref(false);
+
 const themeClass = computed(() => {
     return roadmap.value?.settings?.theme === 'business' ? 'theme-business' : 'theme-vibrant';
 });
