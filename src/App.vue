@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
-import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot, checkUpdates } from './services/github';
+import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot, checkUpdates, listSnapshots, loadSnapshot } from './services/github';
 
 import TimelineGrid from './components/TimelineGrid.vue';
 import ProjectLane from './components/ProjectLane.vue';
@@ -40,6 +40,45 @@ const startYear = ref(now.getFullYear());
 const startMonth = ref(now.getMonth());
 
 const isPresentationMode = ref(false);
+
+// Snapshot State
+const isSnapshotMode = ref(false);
+const currentSnapshotName = ref('');
+const showSnapshotModal = ref(false);
+const availableSnapshots = ref([]);
+
+const openSnapshotBrowser = async () => {
+    loading.value = true;
+    availableSnapshots.value = await listSnapshots();
+    loading.value = false;
+    showSnapshotModal.value = true;
+};
+
+const loadSelectedSnapshot = async (snapshot) => {
+    loading.value = true;
+    try {
+        const data = await loadSnapshot(snapshot.path);
+        // Normalize settings if missing
+        if (!data.settings) data.settings = { categories: [], pis: [], theme: 'vibrant' };
+        
+        roadmap.value = data;
+        isSnapshotMode.value = true;
+        currentSnapshotName.value = snapshot.name;
+        showSnapshotModal.value = false;
+    } catch (e) {
+        alert("Failed to load snapshot: " + e.message);
+    }
+    loading.value = false;
+};
+
+const exitSnapshotMode = async () => {
+    loading.value = true;
+    isSnapshotMode.value = false;
+    currentSnapshotName.value = '';
+    // Reload live data
+    roadmap.value = await loadRoadmap();
+    loading.value = false;
+};
 
 // Modal State
 
@@ -210,14 +249,23 @@ const handleExport = async () => {
         <header v-if="!isPresentationMode" class="flex justify-between items-center mb-6">
             <div class="flex items-center gap-4">
                 <h1 class="text-xl font-bold">Roadmap: {{ repoOwner }}/{{ repoName }}</h1>
-                <button v-if="hasUpdates" @click="refreshData" class="animate-pulse bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded text-sm font-bold border border-yellow-500/50">
+                <div v-if="isSnapshotMode" class="px-3 py-1 bg-purple-600 rounded text-sm font-bold flex items-center gap-2 animate-pulse">
+                    <span>👁 Viewing Snapshot: {{ currentSnapshotName }}</span>
+                    <button @click="exitSnapshotMode" class="bg-white text-purple-900 px-2 rounded-sm text-xs hover:bg-gray-200">Exit (Return to Live)</button>
+                </div>
+                <button v-else-if="hasUpdates" @click="refreshData" class="animate-pulse bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded text-sm font-bold border border-yellow-500/50">
                     ↻ Updates available
                 </button>
             </div>
             <div class="space-x-4">
                  <button @click="handleExport" class="text-sm text-gray-400 hover:text-white">📷 Export</button>
-                 <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white pointer-events-auto z-50 relative">⚙️ Settings</button>
-                 <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
+                 
+                 <template v-if="!isSnapshotMode">
+                     <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white pointer-events-auto z-50 relative">⚙️ Settings</button>
+                     <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
+                     <button @click="openSnapshotBrowser" class="text-sm text-purple-400 hover:text-purple-300">📂 Snapshots</button>
+                 </template>
+                 
                  <button @click="isPresentationMode = true" class="text-sm text-teal-400 hover:text-teal-300">Start Presentation</button>
                  <button @click="logout" class="text-sm text-gray-400 hover:text-white">Logout</button>
             </div>
@@ -297,6 +345,33 @@ const handleExport = async () => {
             @close="isSettingsOpen = false"
             @save="(newSettings) => { roadmap.settings = newSettings; isSettingsOpen = false; saveRoadmap(roadmap); }"
         />
+
+        <!-- Snapshot Browser Modal -->
+        <div v-if="showSnapshotModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+            <div class="bg-gray-800 rounded-lg shadow-2xl w-full max-w-md border border-gray-700 p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-white">📂 Load Snapshot</h3>
+                    <button @click="showSnapshotModal = false" class="text-gray-400 hover:text-white">✕</button>
+                </div>
+                
+                <div v-if="availableSnapshots.length === 0" class="text-gray-400 text-center py-4">
+                    No snapshots found.
+                </div>
+                
+                <div v-else class="space-y-2 max-h-60 overflow-y-auto">
+                    <button v-for="s in availableSnapshots" :key="s.path" 
+                        @click="loadSelectedSnapshot(s)"
+                        class="w-full text-left bg-gray-700 hover:bg-gray-600 p-3 rounded flex justify-between items-center group">
+                        <span class="font-mono text-sm text-blue-300">{{ s.name }}</span>
+                        <span class="text-xs text-gray-400 group-hover:text-white">Load →</span>
+                    </button>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-gray-700 text-center">
+                    <button @click="showSnapshotModal = false" class="text-sm text-gray-500 hover:text-gray-300">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 

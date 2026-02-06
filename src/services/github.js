@@ -152,3 +152,49 @@ export const createSnapshot = async (name) => {
         throw error;
     }
 };
+
+// List available snapshots
+export const listSnapshots = async () => {
+    if (!octokit) return [];
+
+    try {
+        const response = await octokit.rest.repos.getContent({
+            owner,
+            repo,
+            path: "snapshots",
+        });
+
+        // Filter valid json files
+        return response.data
+            .filter(file => file.name.startsWith('roadmap_') && file.name.endsWith('.json'))
+            .map(file => ({
+                name: file.name.replace('roadmap_', '').replace('.json', ''),
+                path: file.path,
+                sha: file.sha
+            }));
+    } catch (error) {
+        // Folder might not exist yet
+        if (error.status === 404) return [];
+        console.error("Failed to list snapshots:", error);
+        return [];
+    }
+};
+
+// Load a specific snapshot (Read Only usually)
+export const loadSnapshot = async (path) => {
+    if (!octokit) throw new Error("GitHub not initialized");
+
+    try {
+        const response = await octokit.rest.repos.getContent({
+            owner,
+            repo,
+            path,
+        });
+
+        const content = atob(response.data.content);
+        return JSON.parse(content);
+    } catch (error) {
+        console.error("Failed to load snapshot:", error);
+        throw error;
+    }
+};
