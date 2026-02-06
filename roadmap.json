@@ -223,6 +223,13 @@
         "right": null
       },
       "_row": 1
+    },
+    {
+      "id": "d7110ce8-4053-4b8e-8cb7-b444178e1ee1",
+      "title": "Offset Test",
+      "startDate": "2026-03-22",
+      "endDate": "2026-03-22",
+      "category": "Core Reasoning"
     }
   ]
 }
