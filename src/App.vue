@@ -35,6 +35,11 @@ const themeClass = computed(() => {
     return roadmap.value?.settings?.theme === 'business' ? 'theme-business' : 'theme-vibrant';
 });
 
+// Apply theme to body for global variables
+watch(themeClass, (newVal) => {
+    document.body.className = newVal;
+}, { immediate: true });
+
 const now = new Date();
 const startYear = ref(now.getFullYear());
 const startMonth = ref(now.getMonth());
@@ -212,7 +217,7 @@ const handleExport = async () => {
 </script>
 
 <template>
-<div class="min-h-screen text-app-text font-sans transition-colors duration-300 bg-app-bg" :class="themeClass">
+<div class="min-h-screen text-app-text font-sans transition-colors duration-300">
     
     <!-- Login Screen -->
     <div v-if="!isAuthenticated" class="flex flex-col items-center justify-center min-h-screen">
