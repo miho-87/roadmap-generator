@@ -16,7 +16,9 @@ export const calculateProjectPosition = (project, startYear, startMonth) => {
 
 // Stack projects to avoid overlap
 // Returns array of projects with 'row' property (0-3)
-export const stackProjects = (projects, year) => {
+// Stack projects to avoid overlap
+// Returns array of projects with 'row' property (0-3)
+export const stackProjects = (projects, startYear, startMonth) => {
     if (!projects || projects.length === 0) return [];
 
     // Sort by start date
@@ -29,7 +31,7 @@ export const stackProjects = (projects, year) => {
     // rows[0] = endPercent of last project in row 0
 
     return sorted.map(project => {
-        const pos = calculateProjectPosition(project, year);
+        const pos = calculateProjectPosition(project, startYear, startMonth);
 
         let assignedRow = -1;
 
