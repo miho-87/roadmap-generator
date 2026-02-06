@@ -322,7 +322,7 @@ const currentViewDate = computed(() => {
                     
                      <!-- Sidebar (Sticky Left) -->
                      <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-30 sticky left-0 shadow-lg">
-                         <div class="h-6 border-b border-app-border bg-app-bg/50"></div> <!-- PI Spacer -->
+                         <div class="h-8 border-b border-app-border bg-app-bg/50"></div> <!-- Spacer matches Month Header (h-8) -->
                          <div class="h-8 border-b border-app-border bg-app-header flex items-center justify-center text-xs font-bold text-app-muted">
                              Category
                          </div>
@@ -339,7 +339,7 @@ const currentViewDate = computed(() => {
                         </div>
                         
                         <!-- Tracks Layer (Foreground) -->
-                        <div class="relative z-10 pt-14">
+                        <div class="relative z-10 pt-16">
                             <ProjectLane v-for="cat in activeCategories" :key="cat" 
                                 :category="cat"
                                 :startYear="startYear"

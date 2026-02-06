@@ -39,11 +39,11 @@ const piLines = computed(() => {
     <!-- Grid Background Lines (Optional, maybe handled by parent track components) -->
     
     <!-- PI Header Row -->
-    <div class="relative w-full h-6 border-b border-app-border bg-app-header/50">
+    <div class="relative w-full h-8 border-b border-app-border bg-app-header/50">
         <div v-for="(pi, idx) in piLines" :key="idx" 
              class="absolute top-0 bottom-0 border-l border-blue-500/30 z-10"
              :style="{ left: pi.left }">
-             <div class="absolute top-0 left-1 text-[10px] text-blue-600 font-bold whitespace-nowrap bg-blue-100/80 px-1 rounded-sm mt-0.5">
+             <div class="absolute top-0 left-1 text-[10px] text-blue-600 font-bold whitespace-nowrap bg-blue-100/80 px-1 rounded-sm mt-1.5">
                  {{ pi.label }}
              </div>
         </div>

@@ -24,7 +24,7 @@ const stackedProjects = computed(() => {
 </script>
 
 <template>
-  <div class="relative w-full border-b border-app-border bg-app-bg/50 min-h-[40px] hover:bg-app-panel transition-colors group">
+  <div class="relative w-full border-b border-app-border bg-app-bg/50 h-[148px] hover:bg-app-panel transition-colors group">
     
     <!-- Category Label (Left Axis) - technically overlay or separate col? -->
     <!-- Requirement: "On the left Y-axis". 
