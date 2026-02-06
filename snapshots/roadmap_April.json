@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "version": 2,
+    "lastUpdated": "2026-02-06T20:00:00Z"
+  },
+  "settings": {
+    "theme": "business",
+    "categories": [
+      "Core",
+      "Memory Systems",
+      "Tool Integrations",
+      "Alignment",
+      "Infrastructure",
+      "Frontend",
+      "Analytics",
+      "Research"
+    ],
+    "pis": [
+      {
+        "name": "PI 2026.11",
+        "start": "2026-03-22",
+        "end": "2026-06-28"
+      },
+      {
+        "name": "PI 2026.22",
+        "start": "2026-06-30",
+        "end": "2026-09-22"
+      },
+      {
+        "name": "PI 2026.35",
+        "start": "2026-09-24",
+        "end": "2026-12-12"
+      },
+      {
+        "name": "PI 2026.47",
+        "start": "2026-12-14",
+        "end": "2027-02-28"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Context Window Expansion",
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Core Reasoning",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
+    },
+    {
+      "id": "p2",
+      "title": "Multi-Step Reasoning Engine",
+      "startDate": "2026-04-01",
+      "endDate": "2026-06-30",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "p3",
+      "title": "Vector DB Optimization",
+      "startDate": "2026-03-22",
+      "endDate": "2026-12-13",
+      "category": "Frontend",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 72.87671232876711,
+        "right": 86.31278538812785
+      },
+      "_row": 0
+    },
+    {
+      "id": "p4",
+      "title": "Long-term Episodic Memory",
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Memory Systems",
+      "_pos": {
+        "left": 24.394977168949772,
+        "width": 33.150684931506845,
+        "right": 57.54566210045662
+      },
+      "_row": 0
+    },
+    {
+      "id": "p5",
+      "title": "GitHub API Integration",
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": null,
+        "width": null,
+        "right": null
+      },
+      "_row": 0
+    },
+    {
+      "id": "p6",
+      "title": "Slack Bot V2",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 26.849315068493155,
+        "right": 40.285388127853885
+      },
+      "_row": 1
+    },
+    {
+      "id": "p7",
+      "title": "Jira Two-Way Sync",
+      "startDate": "2026-06-30",
+      "endDate": "2026-09-20",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 40.833333333333336,
+        "width": 23.013698630136986,
+        "right": 63.84703196347032
+      },
+      "_row": 2
+    },
+    {
+      "id": "p8",
+      "title": "Safety Guardrails Alpha",
+      "startDate": "2026-01-01",
+      "endDate": "2026-03-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p9",
+      "title": "RLHF Pipeline Setup",
+      "startDate": "2026-04-01",
+      "endDate": "2026-07-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "p10",
+      "title": "Kubernetes Cluster Auto-scaling",
+      "startDate": "2026-02-15",
+      "endDate": "2026-05-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p11",
+      "title": "Edge Inference Nodes",
+      "startDate": "2026-07-01",
+      "endDate": "2026-10-30",
+      "category": "Infrastructure"
+    },
+    {
+      "id": "p12",
+      "title": "Dashboard Redesign",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": "Frontend",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 26.849315068493155,
+        "right": 40.285388127853885
+      },
+      "_row": 1
+    },
+    {
+      "id": "p13",
+      "title": "Mobile App Beta",
+      "startDate": "2026-06-28",
+      "endDate": "2026-09-22",
+      "category": "Frontend",
+      "_pos": {
+        "left": 36.72374429223744,
+        "width": 25.205479452054796,
+        "right": 61.92922374429224
+      },
+      "_row": 0
+    },
+    {
+      "id": "p14",
+      "title": "User Behavior Analytics",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": "Analytics",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 0.5,
+        "right": 13.936073059360732
+      },
+      "_row": 0
+    },
+    {
+      "id": "p15",
+      "title": "Transformer Architecture 2.0",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-29",
+      "category": "Research",
+      "_pos": {
+        "left": -8.481735159817351,
+        "width": 49.31506849315069,
+        "right": 40.83333333333334
+      },
+      "_row": 0
+    },
+    {
+      "id": "p16",
+      "title": "Prompt Injection Defense",
+      "startDate": "2026-03-01",
+      "endDate": "2026-05-01",
+      "category": "Research"
+    },
+    {
+      "id": "p17",
+      "title": "Self-Correction Loop",
+      "startDate": "2026-06-01",
+      "endDate": "2026-08-30",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "p18",
+      "title": "Graph Database Migration",
+      "startDate": "2026-06-29",
+      "endDate": "2026-12-01",
+      "category": "Memory Systems",
+      "_pos": {
+        "left": 40.55936073059361,
+        "width": 45.47945205479452,
+        "right": 86.03881278538813
+      },
+      "_row": 1
+    },
+    {
+      "id": "p19",
+      "title": "Notion Integration",
+      "startDate": "2026-09-24",
+      "endDate": "2026-12-12",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 63.84703196347032,
+        "width": 22.19178082191781,
+        "right": 86.03881278538813
+      },
+      "_row": 1
+    },
+    {
+      "id": "p20",
+      "title": "Bias Detection Module",
+      "startDate": "2026-08-01",
+      "endDate": "2026-12-31",
+      "category": "Alignment"
+    },
+    {
+      "id": "3b348252-b90d-44e3-af61-5cb5125fd46f",
+      "title": "abc",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": ""
+    },
+    {
+      "id": "d08cc872-9d14-4fe7-85ef-3ec8eb7867b8",
+      "title": "abc",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": ""
+    },
+    {
+      "id": "3f95dc80-4d40-44b4-9e70-21e13011cec3",
+      "title": "test",
+      "startDate": "2026-02-06",
+      "endDate": "2026-12-06",
+      "category": "Core Reasoning"
+    },
+    {
+      "id": "513af133-0f3b-4c61-be94-b4a507277d21",
+      "title": "test",
+      "startDate": "2026-03-22",
+      "endDate": "2026-12-12",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 72.6027397260274,
+        "right": 86.03881278538813
+      },
+      "_row": 0
+    },
+    {
+      "id": "bfe4c3ed-5e80-4b03-9dab-3de78964fa00",
+      "title": "eins",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-25",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 27.397260273972606,
+        "right": 40.833333333333336
+      },
+      "_row": 1
+    },
+    {
+      "id": "76382fd8-b244-440d-be3e-0caf6ed3c122",
+      "title": "zwei",
+      "startDate": "2026-06-30",
+      "endDate": "2026-09-15",
+      "category": "Core",
+      "_pos": {
+        "left": 43.573059360730596,
+        "width": 20.273972602739725,
+        "right": 63.84703196347032
+      },
+      "_row": 1
+    },
+    {
+      "id": "51e555c9-6699-4d26-88b4-70a65fb764ac",
+      "title": "drei",
+      "startDate": "2026-09-24",
+      "endDate": "2026-12-05",
+      "category": "Core",
+      "_pos": {
+        "left": 65.21689497716895,
+        "width": 20.821917808219183,
+        "right": 86.03881278538813
+      },
+      "_row": 1
+    },
+    {
+      "id": "43273355-c65f-43b6-8f6b-97a27b277e81",
+      "title": "vier",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-21",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 26.849315068493155,
+        "right": 40.285388127853885
+      },
+      "_row": 2
+    },
+    {
+      "id": "28cb11c0-6668-4000-92d1-0993820a0caa",
+      "title": "fünf",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-21",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 24.93150684931507,
+        "right": 38.3675799086758
+      },
+      "_row": 3
+    },
+    {
+      "id": "fe2236f7-bc0e-4522-99cd-a754fd0e5601",
+      "title": "abc",
+      "startDate": "2026-12-14",
+      "endDate": "2027-02-21",
+      "category": "Core",
+      "_pos": {
+        "left": 87.13470319634703,
+        "width": 21.917808219178085,
+        "right": 109.05251141552512
+      },
+      "_row": 0
+    },
+    {
+      "id": "9eb41d1e-765e-4d41-8aa3-8b0c3ba052f5",
+      "title": "sieben",
+      "startDate": "2026-06-30",
+      "endDate": "2026-09-15",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 24.93150684931507,
+        "right": 38.3675799086758
+      },
+      "_row": 4
+    }
+  ]
+}
