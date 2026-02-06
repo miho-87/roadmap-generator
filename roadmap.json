@@ -95,9 +95,15 @@
     {
       "id": "p6",
       "title": "Slack Bot V2",
-      "startDate": "2026-03-15",
-      "endDate": "2026-05-15",
-      "category": "Tool Integrations"
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-28",
+      "category": "Tool Integrations",
+      "_pos": {
+        "left": 11.518264840182649,
+        "width": 16.71232876712329,
+        "right": 28.230593607305938
+      },
+      "_row": 0
     },
     {
       "id": "p7",
