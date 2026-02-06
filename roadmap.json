@@ -304,6 +304,13 @@
       "startDate": "2026-06-28",
       "endDate": "2026-09-22",
       "category": "Core"
+    },
+    {
+      "id": "51e555c9-6699-4d26-88b4-70a65fb764ac",
+      "title": "drei",
+      "startDate": "2026-09-22",
+      "endDate": "2026-12-12",
+      "category": "Core"
     }
   ]
 }
