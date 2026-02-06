@@ -227,6 +227,10 @@ const handleExport = async () => {
         alert("Export failed. See console for details.");
     }
 };
+
+const currentViewDate = computed(() => {
+    return new Date(startYear.value, startMonth.value).toLocaleString('de-DE', { month: 'long', year: 'numeric' });
+});
 </script>
 
 <template>
@@ -295,7 +299,7 @@ const handleExport = async () => {
              :class="{ 'fixed inset-0 z-[40] rounded-none border-0 h-screen': isPresentationMode }">
              <div class="p-4 bg-app-header border-b border-app-border flex justify-between items-center" v-if="!isPresentationMode">
                  <div class="flex items-center space-x-4">
-                    <h2 class="text-lg font-bold">{{ startYear }} / {{ startMonth + 1 }} - View</h2>
+                    <h2 class="text-lg font-bold capitalize">{{ currentViewDate }}</h2>
                     <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500 text-white shadow">+ Add Project</button>
                  </div>
                   <!-- Navigation: +/- 1 Month -->
@@ -312,20 +316,23 @@ const handleExport = async () => {
                  </button>
              </div>
 
-             <!-- Roadmap View -->
-             <div class="flex flex-row min-h-[500px] border-t border-app-border relative h-full">
-                 
-                 <!-- Sidebar (Y-Axis Labels) -->
-                 <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-20 flex flex-col pt-8 shadow-sm">
-                     <div class="h-6 border-b border-app-border bg-app-bg/50"></div> <!-- PI Spacer -->
-                     <div v-for="cat in activeCategories" :key="cat" class="h-[148px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted">
-                         {{ cat }}
+             <!-- Roadmap View (Unified Scroll Container) -->
+             <div id="roadmap-view" class="flex-1 relative overflow-auto border-t border-app-border h-[calc(100vh-200px)]">
+                 <div class="flex min-w-[max-content] h-full relative">
+                    
+                     <!-- Sidebar (Sticky Left) -->
+                     <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-30 sticky left-0 shadow-lg">
+                         <div class="h-6 border-b border-app-border bg-app-bg/50"></div> <!-- PI Spacer -->
+                         <div class="h-8 border-b border-app-border bg-app-header flex items-center justify-center text-xs font-bold text-app-muted">
+                             Category
+                         </div>
+                         <div v-for="cat in activeCategories" :key="cat" class="h-[148px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted bg-app-header">
+                             {{ cat }}
+                         </div>
                      </div>
-                 </div>
 
-                 <!-- Scrollable Content -->
-                 <div id="roadmap-view" class="flex-1 relative overflow-x-auto">
-                     <div class="min-w-[1000px] h-full relative">
+                     <!-- Timeline Content -->
+                     <div class="min-w-[1000px] flex-1 relative">
                         <!-- Grid Layer (Background) -->
                         <div class="absolute inset-0 z-0 h-full">
                             <TimelineGrid :startYear="startYear" :startMonth="startMonth" :settings="roadmap.settings" />
