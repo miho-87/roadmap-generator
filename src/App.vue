@@ -316,9 +316,8 @@ const currentViewDate = computed(() => {
                  </button>
              </div>
 
-             <!-- Roadmap View (Unified Scroll Container) -->
              <div id="roadmap-view" class="flex-1 relative overflow-auto border-t border-app-border h-[calc(100vh-200px)]">
-                 <div class="flex min-w-[max-content] h-full relative">
+                 <div class="flex min-w-[max-content] min-h-full relative">
                     
                      <!-- Sidebar (Sticky Left) -->
                      <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-30 sticky left-0 shadow-lg">
