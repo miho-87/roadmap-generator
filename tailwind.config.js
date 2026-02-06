@@ -25,6 +25,7 @@ export default {
                     teal: 'var(--track-teal)',
                     indigo: 'var(--track-indigo)',
                     red: 'var(--track-red)',
+                    text: 'var(--text-on-track)',
                 }
             }
         },

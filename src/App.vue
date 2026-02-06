@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
+import { ref, onMounted, onUnmounted, computed, nextTick, watch } from 'vue';
 import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot, checkUpdates, listSnapshots, loadSnapshot } from './services/github';
 
 import TimelineGrid from './components/TimelineGrid.vue';

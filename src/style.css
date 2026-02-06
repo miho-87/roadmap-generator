@@ -4,14 +4,21 @@
 
 :root {
     /* Vibrant Theme (Default) */
-    --bg-app: #111827;       /* gray-900 */
-    --bg-panel: #1f2937;     /* gray-800 */
-    --bg-header: #1f2937;    /* gray-800 */
-    --border-color: #374151; /* gray-700 */
-    --text-primary: #f9fafb; /* gray-50 */
-    --text-muted: #9ca3af;   /* gray-400 */
-    --text-accent: #60a5fa;  /* blue-400 */
-    
+    --bg-app: #111827;
+    /* gray-900 */
+    --bg-panel: #1f2937;
+    /* gray-800 */
+    --bg-header: #1f2937;
+    /* gray-800 */
+    --border-color: #374151;
+    /* gray-700 */
+    --text-primary: #f9fafb;
+    /* gray-50 */
+    --text-muted: #9ca3af;
+    /* gray-400 */
+    --text-accent: #60a5fa;
+    /* blue-400 */
+
     /* Track Colors (Vibrant) */
     --track-blue: #2563eb;
     --track-purple: #9333ea;
@@ -21,27 +28,48 @@
     --track-teal: #0d9488;
     --track-indigo: #4f46e5;
     --track-red: #dc2626;
+
+    --text-on-track: #ffffff;
+    /* White text on dark/vibrant tracks */
 }
 
 /* Business Theme (Light/Professional) */
 .theme-business {
-    --bg-app: #f1f5f9;       /* slate-100 */
-    --bg-panel: #ffffff;     /* white */
-    --bg-header: #ffffff;    /* white */
-    --border-color: #cbd5e1; /* slate-300 */
-    --text-primary: #0f172a; /* slate-900 */
-    --text-muted: #64748b;   /* slate-500 */
-    --text-accent: #2563eb;  /* blue-600 */
+    --bg-app: #f1f5f9;
+    /* slate-100 */
+    --bg-panel: #ffffff;
+    /* white */
+    --bg-header: #ffffff;
+    /* white */
+    --border-color: #cbd5e1;
+    /* slate-300 */
+    --text-primary: #0f172a;
+    /* slate-900 */
+    --text-muted: #64748b;
+    /* slate-500 */
+    --text-accent: #2563eb;
+    /* blue-600 */
 
-    /* Track Colors (Muted/Professional) */
-    --track-blue: #3b82f6;   /* blue-500 */
-    --track-purple: #8b5cf6; /* violet-500 */
-    --track-green: #10b981;  /* emerald-500 */
-    --track-orange: #f97316; /* orange-500 */
-    --track-pink: #ec4899;   /* pink-500 */
-    --track-teal: #14b8a6;   /* teal-500 */
-    --track-indigo: #6366f1; /* indigo-500 */
-    --track-red: #ef4444;    /* red-500 */
+    /* Track Colors (Pastel/Light for Business) */
+    --track-blue: #bfdbfe;
+    /* blue-200 */
+    --track-purple: #e9d5ff;
+    /* violet-200 */
+    --track-green: #bbf7d0;
+    /* emerald-200 */
+    --track-orange: #fed7aa;
+    /* orange-200 */
+    --track-pink: #fbcfe8;
+    /* pink-200 */
+    --track-teal: #99f6e4;
+    /* teal-200 */
+    --track-indigo: #c7d2fe;
+    /* indigo-200 */
+    --track-red: #fecaca;
+    /* red-200 */
+
+    --text-on-track: #0f172a;
+    /* Dark text on pastel tracks */
 }
 
 body {

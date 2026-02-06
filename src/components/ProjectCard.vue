@@ -32,7 +32,7 @@ const colorClass = computed(() => {
 </script>
 
 <template>
-  <div class="absolute h-6 rounded text-xs text-white px-2 py-0.5 whitespace-nowrap overflow-hidden cursor-pointer shadow transition-all z-20 flex items-center"
+  <div class="absolute h-6 rounded text-xs text-track-text px-2 py-0.5 whitespace-nowrap overflow-hidden cursor-pointer shadow transition-all z-20 flex items-center"
        :class="colorClass"
        :style="style"
        :title="project.title + ' (' + project.startDate + ' - ' + project.endDate + ')'">
