@@ -99,9 +99,25 @@ export const saveRoadmap = async (roadmapData) => {
         return { success: true };
     } catch (error) {
         if (error.status === 409) {
-            console.error("Conflict detected! Retrieve latest version.");
-            return { success: false, error: "CONFLICT" };
+            console.warn("Conflict detected! Fetching latest SHA and retrying...");
+            // Fetch latest SHA
+            try {
+                const { data } = await octokit.rest.repos.getContent({
+                    owner,
+                    repo,
+                    path: "roadmap.json",
+                });
+                currentSha = data.sha;
+
+                // Retry the save operation recursively (once)
+                // Note: This overwrites remote changes with local state (Last Write Wins)
+                return await saveRoadmap(roadmapData);
+            } catch (retryError) {
+                console.error("Retry failed:", retryError);
+                return { success: false, error: "RETRY_FAILED" };
+            }
         }
+        console.error("Save failed:", error);
         throw error;
     }
 };
