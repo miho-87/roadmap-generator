@@ -5,6 +5,10 @@ let owner = '';
 let repo = '';
 let currentSha = null;
 
+// UTF-8 Clean Base64 Helpers
+const toBase64 = (str) => btoa(unescape(encodeURIComponent(str)));
+const fromBase64 = (str) => decodeURIComponent(escape(atob(str)));
+
 const DEFAULT_SETTINGS = {
     theme: 'vibrant',
     categories: ["Core Reasoning", "Memory Systems", "Tool Integrations", "Alignment", "Infrastructure", "Frontend", "Analytics", "Research"],
@@ -40,7 +44,7 @@ export const loadRoadmap = async () => {
         });
 
         // Content is base64 encoded
-        const content = atob(response.data.content);
+        const content = fromBase64(response.data.content);
         currentSha = response.data.sha; // Save SHA for updates
 
         const data = JSON.parse(content);
@@ -83,7 +87,7 @@ export const checkUpdates = async () => {
 export const saveRoadmap = async (roadmapData) => {
     if (!octokit) throw new Error("GitHub not initialized");
 
-    const content = btoa(JSON.stringify(roadmapData, null, 2));
+    const content = toBase64(JSON.stringify(roadmapData, null, 2));
 
     try {
         const response = await octokit.rest.repos.createOrUpdateFileContents({
@@ -194,7 +198,7 @@ export const loadSnapshot = async (path) => {
             path,
         });
 
-        const content = atob(response.data.content);
+        const content = fromBase64(response.data.content);
         return JSON.parse(content);
     } catch (error) {
         console.error("Failed to load snapshot:", error);
