@@ -199,21 +199,84 @@ const logout = () => {
 };
 
 const handleExport = async () => {
-    const el = document.getElementById('roadmap-container');
-    if (!el) return;
+    const sourceEl = document.getElementById('roadmap-container');
+    if (!sourceEl) return;
+
+    // 1. Calculate Full Dimensions
+    // We need the size of the inner content, not the constrained container
+    const scrollView = document.getElementById('roadmap-view');
+    const scrollContent = scrollView ? scrollView.children[0] : null;
     
-    // Temporarily remove fixed positioning if in presentation mode for full capture
-    const wasPresentation = isPresentationMode.value;
-    if (wasPresentation) {
-        // Wait for UI to update if we needed to change state (optional strategy)
+    // Header height (toolbar) approx 60-70px. Let's measure it if possible, or approximate.
+    // sourceEl.offsetHeight - scrollView.offsetHeight gives the header part.
+    const headerHeight = sourceEl.offsetHeight - (scrollView ? scrollView.offsetHeight : 0);
+    
+    const contentWidth = scrollContent ? scrollContent.scrollWidth : sourceEl.scrollWidth;
+    const contentHeight = (scrollContent ? scrollContent.scrollHeight : sourceEl.scrollHeight) + headerHeight;
+
+    // 2. Enforce 16:10 Aspect Ratio
+    const targetRatio = 16 / 10;
+    let finalWidth = contentWidth;
+    let finalHeight = contentHeight;
+
+    if (finalWidth / finalHeight < targetRatio) {
+        // Too tall? Increase width (add padding sides) OR just accept it? 
+        // Usually roadmap is wider. If it's too tall, we might want to increase width to make it a slide.
+        finalWidth = finalHeight * targetRatio;
+    } else {
+        // Too wide? Increase height (add padding bottom)
+        finalHeight = finalWidth / targetRatio;
+    }
+    
+    // 3. Clone and Render Off-screen
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '-10000px';
+    container.style.left = '-10000px';
+    container.style.width = finalWidth + 'px';
+    container.style.height = finalHeight + 'px';
+    container.style.zIndex = '-1';
+    
+    const clone = sourceEl.cloneNode(true);
+    
+    // Style the clone to fill the container and show everything
+    clone.style.width = '100%';
+    clone.style.height = '100%';
+    clone.style.overflow = 'visible';
+    clone.style.position = 'static'; // Reset potential fixed pos
+    
+    // Expand the internal scroll view in the clone
+    const cloneScrollView = clone.querySelector('#roadmap-view');
+    if (cloneScrollView) {
+        cloneScrollView.style.overflow = 'visible';
+        cloneScrollView.style.height = 'auto'; // Let it grow
+        cloneScrollView.style.border = 'none'; // Remove scroll border influence if any
+    }
+    
+    // Ensure the sticky sidebar in clone doesn't break layout or look weird
+    // Sticky elements in a cloned static container might behave unexpectedly, 
+    // but html2canvas usually handles what it sees. 
+    // We might want to make it static to avoid 'sticking' to the top of the hidden window.
+    const cloneSidebar = clone.querySelector('.sticky');
+    if (cloneSidebar) {
+        cloneSidebar.classList.remove('sticky');
+        cloneSidebar.style.position = 'static'; 
+        cloneSidebar.style.height = '100%'; // Ensure full height background
     }
 
+    container.appendChild(clone);
+    document.body.appendChild(container);
+
     try {
-        const canvas = await html2canvas(el, {
-            backgroundColor: '#1f2937', // Match bg-gray-800
-            scale: 2, // Higher resolution
+        const canvas = await html2canvas(container, {
+            backgroundColor: '#1f2937', 
+            scale: 2, // Retina quality
             logging: false,
-            useCORS: true
+            useCORS: true,
+            width: finalWidth,
+            height: finalHeight,
+            windowWidth: finalWidth,
+            windowHeight: finalHeight
         });
 
         const link = document.createElement('a');
@@ -224,7 +287,9 @@ const handleExport = async () => {
         document.body.removeChild(link);
     } catch (err) {
         console.error("Export failed:", err);
-        alert("Export failed. See console for details.");
+        alert("Export failed. See console for details: " + err.message);
+    } finally {
+        document.body.removeChild(container);
     }
 };
 
