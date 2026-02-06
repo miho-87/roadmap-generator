@@ -140,6 +140,36 @@ const logout = () => {
     token.value = '';
     localStorage.removeItem('gh_token');
 };
+
+const handleExport = async () => {
+    const el = document.getElementById('roadmap-container');
+    if (!el) return;
+    
+    // Temporarily remove fixed positioning if in presentation mode for full capture
+    const wasPresentation = isPresentationMode.value;
+    if (wasPresentation) {
+        // Wait for UI to update if we needed to change state (optional strategy)
+    }
+
+    try {
+        const canvas = await html2canvas(el, {
+            backgroundColor: '#1f2937', // Match bg-gray-800
+            scale: 2, // Higher resolution
+            logging: false,
+            useCORS: true
+        });
+
+        const link = document.createElement('a');
+        link.download = `roadmap-${new Date().toISOString().split('T')[0]}.png`;
+        link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } catch (err) {
+        console.error("Export failed:", err);
+        alert("Export failed. See console for details.");
+    }
+};
 </script>
 
 <template>
