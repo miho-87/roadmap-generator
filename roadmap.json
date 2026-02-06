@@ -188,9 +188,15 @@
     {
       "id": "p15",
       "title": "Transformer Architecture 2.0",
-      "startDate": "2026-01-01",
-      "endDate": "2026-06-30",
-      "category": "Research"
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-29",
+      "category": "Research",
+      "_pos": {
+        "left": -8.481735159817351,
+        "width": 49.31506849315069,
+        "right": 40.83333333333334
+      },
+      "_row": 0
     },
     {
       "id": "p16",
