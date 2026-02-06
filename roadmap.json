@@ -162,9 +162,15 @@
     {
       "id": "p13",
       "title": "Mobile App Beta",
-      "startDate": "2026-06-15",
-      "endDate": "2026-09-15",
-      "category": "Frontend"
+      "startDate": "2026-06-28",
+      "endDate": "2026-09-22",
+      "category": "Frontend",
+      "_pos": {
+        "left": 36.72374429223744,
+        "width": 25.205479452054796,
+        "right": 61.92922374429224
+      },
+      "_row": 0
     },
     {
       "id": "p14",
