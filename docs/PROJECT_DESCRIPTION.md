@@ -6,16 +6,14 @@ Das Ziel des Projekts ist die Entwicklung eines Systems zur Erstellung von Roadm
 ## Kernfunktionen
 
 ### Visualisierung
-- **Zeitraum**: Die Roadmap deckt standardmäßig ein Jahr ab.
+- **Zeitraum**: Die Roadmap bildet dynamisch einen Zeitraum von einem Jahr ab, beginnend beim aktuellen Monat (z.B. Feb 2026 - Jan 2027).
 - **Raster**: Die Standardansicht nutzt ein monatsweises Raster.
 - **X-Achse**: Bildet die Zeit ab (Jahresansicht, monatsweise).
-- **Y-Achse**: Gruppiert Projekte nach Überprojekten (Kategorien/Buckets). Es sollen ca. **8 Gruppen** angezeigt werden.
+- **Y-Achse**: Gruppiert Projekte nach Überprojekten (Kategorien/Buckets), welche vom Nutzer frei konfigurier- und sortierbar sind.
 - **Layout innerhalb Gruppe**:
     - Zeitlich folgende Projekte stehen nebeneinander (bis zu 4 sichtbar im Viewport).
     - Zeitlich überlappende Projekte werden gestapelt.
     - **Maximale Stapelhöhe**: Bis zu 4 Projekte übereinander innerhalb einer Gruppe.
-
-### Projekte
 
 ### Projekte
 - **Definition**: Projekte werden durch **Titel**, Start- und Enddatum definiert.
@@ -32,39 +30,19 @@ Das Ziel des Projekts ist die Entwicklung eines Systems zur Erstellung von Roadm
 ## Anforderungen an die Bedienung
 - Einfache "Snap-to-Grid" oder Ausrichtungsfunktionalität für Projekte basierend auf den PI-Zeiträumen.
 - Manuelle Anpassungsmöglichkeiten für Projekte, die von der Regel abweichen.
+- **PI-Planung**: Konfigurierbare PI-Termine (4x pro Jahr) und PI-Namen (z.B. "PI 2026.11").
+- **Kategorien-Verwaltung**: Hinzufügen, Umbenennen und Löschen von Kategorien. Sicherheitsabfrage beim Löschen (Löschen einer Kategorie löscht auch alle darin enthaltenen Projekte).
 
-## Bedienung & Workflows
-
-### 1. Initiale Erstellung & Projekte verwalten
-- **Add-Flow**: Schnelles Hinzufügen von Projekten direkt in der Zeile ("Click to Add") oder über einen "Neues Projekt" Button.
-- **Editor**: Ein Modal oder Seitenleiste ("Project Details") zur Eingabe von Titel, Start/Ende und Gruppe.
-- **Komfort**: 
-    - "Smart Defaults": Start/Ende werden automatisch auf das aktuelle PI gesetzt.
-    - Drag & Drop zum Verschieben zwischen Gruppen oder Zeiträumen.
-
-### 2. Regelmäßige Überplanung (Re-Planning)
-Da dies alle 6 Wochen geschieht, muss der Prozess effizient sein:
-- **Basis**: Start mit einer Kopie des letzten Standes (siehe Historisierung).
-- **Visuelles Feedback**: Man sieht sofort, wo Projekte sich überschneiden oder Lücken entstehen.
-- **Bulk-Actions**: Projekte können einfach verlängert oder verschoben werden.
-- **Löschen**: Schnelles Entfernen von Projekten, die nicht mehr relevant sind.
-
-### 3. Präsentation & Management
-- **Präsentations-Modus**: Eine bereinigte Ansicht ohne Bearbeitungs-Icons ("Read-Only").
-- **Fokus**: Maximale Lesbarkeit für Beamer/Screen-Sharing (größere Schrift, hoher Kontrast).
-- **Export**: Möglichkeit, die Ansicht als statisches Bild (PNG) oder PDF zu exportieren, um sie in Folien einzubetten (falls PowerPoint unumgänglich ist).
-
+## Design & Export
+- **Farbschema**: Standard ist ein "Business/Classic" Schema (nüchterne, professionelle Farben: Blau, Schiefer, Grau). Das bisherige "Vibrant" Schema bleibt optional wählbar.
+- **Export**: Funktion zum Exportieren der Roadmap als Bild oder PDF.
+- **Präsentationsmodus**: Navigation zurück in den Editiermodus ("Back to Edit") muss möglich sein.
 
 ## Kollaboration und Datenintegrität (Neu)
-- **Problemstellung**: Aktuell wird eine geteilte PowerPoint-Datei verwendet. Wenn mehrere Personen gleichzeitig editieren, kommt es zu Speicherkonflikten und Datenverlust (gegenseitiges Überschreiben).
-- **Anforderung**: Das System muss gleichzeitiges Arbeiten ermöglichen oder zumindest Speicherkonflikte verhindern ("Last write wins" darf nicht blind passieren).
-- **Ziel**: Eine "Single Source of Truth", die sicherstellt, dass Änderungen von Kollegen nicht versehentlich verloren gehen.
+- **Auto-Refresh**: Automatische Synchronisierung der Projektdaten aus dem Repository bei Änderungen durch andere (polling oder event-basiert) und nach eigenen Änderungen.
+- **Problemstellung**: Aktuell wird eine geteilte PowerPoint-Datei verwendet. Wenn mehrere Personen gleichzeitig editieren, kommt es zu Speicherkonflikten und Datenverlust.
+- **Anforderung**: Das System muss gleichzeitiges Arbeiten ermöglichen oder zumindest Speicherkonflikte verhindern.
 
 ## Historisierung & Planungszyklen
 - **Planungszyklus**: Roadmap-Planungssessions finden ca. alle 6 Wochen statt.
 - **Historisierung**: Es muss möglich sein, eine Kopie ("Snapshot") des vorherigen Standes zu erstellen, um eine Historie der Planungen abzubilden.
-- **Workflow**:
-    - Neue Planung startet auf Basis der Kopie des letzten Standes (nicht bei Null).
-    - Während der Planung werden bestehende Projekte verschoben (Termine geändert), neue hinzugefügt oder obsolete entfernt.
-
-

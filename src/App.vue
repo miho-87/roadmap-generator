@@ -1,18 +1,14 @@
-<script setup>
-import { ref } from 'vue';
-import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot } from './services/github';
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
+import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot, checkUpdates } from './services/github';
 
 import TimelineGrid from './components/TimelineGrid.vue';
 import ProjectLane from './components/ProjectLane.vue';
 import ProjectModal from './components/ProjectModal.vue';
-import { formatDate } from './utils/dates';
+import SettingsModal from './components/SettingsModal.vue';
+import { formatDate, snapToPI } from './utils/dates';
+import html2canvas from 'html2canvas';
 
-
-const CATEGORIES = [
-    "Core Reasoning", "Memory Systems", "Tool Integrations", 
-    "Alignment", "Infrastructure", "Frontend", 
-    "Analytics", "Research"
-];
+// CATEGORIES are now dynamic from settings
 
 
 const token = ref(localStorage.getItem('gh_token') || '');
@@ -46,7 +42,14 @@ const openEditProject = (project) => {
 const handleSave = async (projectData) => {
     if (!roadmap.value?.projects) roadmap.value.projects = [];
     
+    if (alignToPI) {
+       // Re-snap if needed (passed from modal would be better, but this works)
+       projectData.startDate = snapToPI(projectData.startDate, roadmap.value.settings);
+       projectData.endDate = snapToPI(projectData.endDate, roadmap.value.settings);
+    }
+
     if (editingProject.value) {
+
         // Update existing
         const index = roadmap.value.projects.findIndex(p => p.id === editingProject.value.id);
         if (index !== -1) {
@@ -156,11 +159,18 @@ const logout = () => {
       </div>
     </div>
 
-    <!-- App Content (Placeholder for now) -->
-    <div v-else class="p-6 transition-all duration-500" :class="{ 'p-0': isPresentationMode }">
+    <!-- App Content -->
+    <div v-else class="p-6 transition-all duration-500 min-h-screen" :class="[{ 'p-0': isPresentationMode }, themeClass]">
         <header v-if="!isPresentationMode" class="flex justify-between items-center mb-6">
-            <h1 class="text-xl font-bold">Roadmap: {{ repoOwner }}/{{ repoName }}</h1>
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl font-bold">Roadmap: {{ repoOwner }}/{{ repoName }}</h1>
+                <button v-if="hasUpdates" @click="refreshData" class="animate-pulse bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded text-sm font-bold border border-yellow-500/50">
+                    ↻ Updates available
+                </button>
+            </div>
             <div class="space-x-4">
+                 <button @click="handleExport" class="text-sm text-gray-400 hover:text-white">📷 Export</button>
+                 <button @click="isSettingsOpen = true" class="text-sm text-gray-400 hover:text-white">⚙️ Settings</button>
                  <button @click="handleSnapshot" class="text-sm text-blue-400 hover:text-blue-300">Create Snapshot</button>
                  <button @click="isPresentationMode = true" class="text-sm text-teal-400 hover:text-teal-300">Start Presentation</button>
                  <button @click="logout" class="text-sm text-gray-400 hover:text-white">Logout</button>
@@ -169,48 +179,52 @@ const logout = () => {
 
         <div v-if="loading" class="text-center text-gray-400">Loading data...</div>
         
-        <div v-else-if="roadmap" class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl transition-all"
-             :class="{ 'fixed inset-0 z-50 rounded-none border-0': isPresentationMode }">
+        <div v-else-if="roadmap" id="roadmap-container" class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl transition-all"
+             :class="{ 'fixed inset-0 z-50 rounded-none border-0 h-screen': isPresentationMode }">
              <!-- Toolbar -->
              <div class="p-4 bg-gray-800 border-b border-gray-700 flex justify-between items-center" v-if="!isPresentationMode">
                  <div class="flex items-center space-x-4">
-                    <h2 class="text-lg font-bold">Timeline {{ currentYear }}</h2>
+                    <h2 class="text-lg font-bold">{{ startYear }} / {{ startMonth + 1 }} - View</h2>
                     <button @click="openNewProject" class="px-3 py-1 bg-blue-600 rounded text-sm font-bold hover:bg-blue-500">+ Add Project</button>
                  </div>
+                 <!-- Simple Navigation: +/- 1 Month -->
                  <div class="space-x-2">
-                     <button @click="currentYear--" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Prev</button>
-                     <button @click="currentYear++" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Next</button>
+                     <button @click="()=>{ startMonth--; if(startMonth<0){startMonth=11; startYear--;}}" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Prev Month</button>
+                     <button @click="()=>{ startMonth++; if(startMonth>11){startMonth=0; startYear++;}}" class="px-2 py-1 bg-gray-700 rounded text-xs hover:bg-gray-600">Next Month</button>
                  </div>
              </div>
              
              <!-- Presentation Toolbar overlay -->
              <div v-if="isPresentationMode" class="absolute bottom-4 right-4 z-50 opacity-0 hover:opacity-100 transition-opacity">
-                 <button @click="isPresentationMode = false" class="bg-black/50 hover:bg-black/80 text-white px-4 py-2 rounded backdrop-blur">Exit Presentation</button>
+                 <button @click="isPresentationMode = false" class="bg-black/50 hover:bg-black/80 text-white px-4 py-2 rounded backdrop-blur font-bold shadow-lg transform transition hover:scale-105">
+                     Exit Presentation
+                 </button>
              </div>
 
              <!-- Roadmap View -->
-             <div class="flex flex-row min-h-[500px] border-t border-gray-700 relative">
+             <div class="flex flex-row min-h-[500px] border-t border-gray-700 relative h-full">
                  
                  <!-- Sidebar (Y-Axis Labels) -->
                  <div class="w-48 flex-shrink-0 bg-gray-800 border-r border-gray-700 z-20 flex flex-col pt-8">
-                     <div v-for="cat in CATEGORIES" :key="cat" class="h-[116px] border-b border-gray-700 flex items-center px-4 text-sm font-semibold text-gray-300">
+                     <div v-for="cat in activeCategories" :key="cat" class="h-[116px] border-b border-gray-700 flex items-center px-4 text-sm font-semibold text-gray-300">
                          {{ cat }}
                      </div>
                  </div>
 
                  <!-- Scrollable Content -->
-                 <div class="flex-1 relative overflow-x-auto">
+                 <div id="roadmap-view" class="flex-1 relative overflow-x-auto">
                      <div class="min-w-[1000px] h-full relative">
                         <!-- Grid Layer (Background) -->
-                        <div class="absolute inset-0 z-0">
-                            <TimelineGrid :year="currentYear" />
+                        <div class="absolute inset-0 z-0 h-full">
+                            <TimelineGrid :startYear="startYear" :startMonth="startMonth" :settings="roadmap.settings" />
                         </div>
                         
                         <!-- Tracks Layer (Foreground) -->
                         <div class="relative z-10 pt-8">
-                            <ProjectLane v-for="cat in CATEGORIES" :key="cat" 
+                            <ProjectLane v-for="cat in activeCategories" :key="cat" 
                                 :category="cat"
-                                :year="currentYear"
+                                :startYear="startYear"
+                                :startMonth="startMonth"
                                 :projects="roadmap?.projects?.filter(p => p.category === cat) || []"
                                 @project-click="openEditProject"
                             />
@@ -223,13 +237,21 @@ const logout = () => {
         <ProjectModal 
             :isOpen="isModalOpen" 
             :project="editingProject"
-            :year="currentYear"
-            :categories="CATEGORIES"
+            :year="startYear" 
+            :categories="activeCategories"
             @close="isModalOpen = false"
             @save="handleSave"
             @delete="handleDelete"
         />
+
+        <SettingsModal
+            :isOpen="isSettingsOpen"
+            :settings="roadmap.settings"
+            @close="isSettingsOpen = false"
+            @save="(newSettings) => { roadmap.settings = newSettings; isSettingsOpen = false; saveRoadmap(roadmap); }"
+        />
     </div>
+
 
   </div>
 </template>

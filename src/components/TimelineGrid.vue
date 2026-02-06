@@ -3,25 +3,27 @@ import { computed } from 'vue';
 import { getMonths, getPIMilestones, dateToPercent, MONTH_NAMES } from '../utils/dates';
 
 const props = defineProps({
-    year: {
-        type: Number,
-        default: new Date().getFullYear()
-    }
+    startYear: Number,
+    startMonth: Number, // 0-11
+    settings: Object
 });
 
-const months = computed(() => getMonths(props.year));
+const months = computed(() => getMonths(props.startYear, props.startMonth));
 
 const piLines = computed(() => {
-    return getPIMilestones(props.year).map((date, index) => {
-        // Only show 4 lines (Start of Q1, Q2, Q3, Q4) - assume next year start is handled by grid end
-        if (index > 3) return null; 
+    return getPIMilestones(props.settings).map(pi => {
+        const percent = dateToPercent(pi.date, props.startYear, props.startMonth);
         
+        // Filter out of bounds (0-100%)
+        if (percent < 0 || percent > 100) return null;
+
         return {
-            left: dateToPercent(date, props.year) + '%',
-            label: `PI Planning Q${index + 1}`
+            left: percent + '%',
+            label: pi.label
         };
     }).filter(Boolean);
 });
+
 
 </script>
 

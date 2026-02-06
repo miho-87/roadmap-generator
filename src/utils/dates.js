@@ -3,69 +3,81 @@ export const MONTH_NAMES = [
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
 
-// Get array of months for a given year
-export const getMonths = (year) => {
-    return MONTH_NAMES.map((name, index) => ({
-        name,
-        index,
-        year
+// Get array of months for a dynamic year (starts at startMonth)
+// startMonth: 0-11
+export const getMonths = (year, startMonth = 0) => {
+    let months = [];
+
+    // We want 12 months starting from year/startMonth
+    for (let i = 0; i < 12; i++) {
+        let mIndex = (startMonth + i) % 12;
+        let mYear = year + Math.floor((startMonth + i) / 12);
+
+        months.push({
+            name: MONTH_NAMES[mIndex],
+            index: mIndex,
+            year: mYear
+        });
+    }
+    return months;
+};
+
+// Get PI Milestones from Settings
+export const getPIMilestones = (settings) => {
+    if (!settings || !settings.pis) return [];
+
+    return settings.pis.map(pi => ({
+        label: pi.name,
+        date: new Date(pi.start) // Align line to start date
     }));
 };
 
-// Get PI Milestones (Quarterly: Jan, Apr, Jul, Oct)
-// Assuming PIs start roughly at Q1, Q2, Q3, Q4 starts.
-export const getPIMilestones = (year) => {
-    // Dates for PI Plannings (approximate start of quarters)
-    return [
-        new Date(year, 0, 1),  // Jan 1
-        new Date(year, 3, 1),  // Apr 1
-        new Date(year, 6, 1),  // Jul 1
-        new Date(year, 9, 1),  // Oct 1
-        new Date(year + 1, 0, 1) // Next Year Jan 1 (End of Q4)
-    ];
-};
+// Calculate percentage position of a date within the DYNAMIC year
+export const dateToPercent = (dateStr, startYear, startMonth) => {
+    const startOfPeriod = new Date(startYear, startMonth, 1).getTime();
+    // End is 12 months later
+    const endOfPeriod = new Date(startYear, startMonth + 12, 1).getTime();
 
-// Calculate percentage position of a date within the year
-export const dateToPercent = (dateStr, year) => {
-    const startOfYear = new Date(year, 0, 1).getTime();
-    const endOfYear = new Date(year + 1, 0, 1).getTime();
     const target = new Date(dateStr).getTime();
 
     if (isNaN(target)) return 0;
 
-    const totalDuration = endOfYear - startOfYear;
-    const position = target - startOfYear;
+    const totalDuration = endOfPeriod - startOfPeriod;
+    const position = target - startOfPeriod;
 
     let percent = (position / totalDuration) * 100;
 
-    // Clamp
-    // percent = Math.max(0, Math.min(100, percent));
     return percent;
 };
 
-// Format date for inputs
-export const formatDate = (date) => {
-    if (!date) return '';
-    return new Date(date).toISOString().split('T')[0];
-}
+// Snap date to nearest PI boundary (Start or End)
+export const snapToPI = (dateStr, settings) => {
+    if (!settings?.pis || settings.pis.length === 0) return dateStr;
 
-// Snap date to nearest PI boundary
-export const snapToPI = (dateStr, year) => {
     const target = new Date(dateStr).getTime();
-    const boundaries = getPIMilestones(year).map(d => d.getTime());
+    let candidates = [];
+
+    settings.pis.forEach(pi => {
+        candidates.push(new Date(pi.start).getTime());
+        candidates.push(new Date(pi.end).getTime());
+    });
 
     // Find closest boundary
-    let closest = boundaries[0];
+    let closest = candidates[0];
     let minDiff = Math.abs(target - closest);
 
-    for (let i = 1; i < boundaries.length; i++) {
-        const diff = Math.abs(target - boundaries[i]);
+    for (let i = 1; i < candidates.length; i++) {
+        const diff = Math.abs(target - candidates[i]);
         if (diff < minDiff) {
             minDiff = diff;
-            closest = boundaries[i];
+            closest = candidates[i];
         }
     }
 
     return new Date(closest).toISOString().split('T')[0];
 };
 
+export const formatDate = (date) => {
+    if (!date) return '';
+    return new Date(date).toISOString().split('T')[0];
+}

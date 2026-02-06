@@ -5,8 +5,15 @@ let owner = '';
 let repo = '';
 let currentSha = null;
 
+const DEFAULT_SETTINGS = {
+    theme: 'vibrant',
+    categories: ["Core Reasoning", "Memory Systems", "Tool Integrations", "Alignment", "Infrastructure", "Frontend", "Analytics", "Research"],
+    pis: [] // Will be populated dynamically if empty
+};
+
 // Initialize Octokit with user token and repo details
 export const initGitHub = async (token, repoOwner, repoName) => {
+
     try {
         octokit = new Octokit({ auth: token });
         owner = repoOwner;
@@ -35,15 +42,42 @@ export const loadRoadmap = async () => {
         // Content is base64 encoded
         const content = atob(response.data.content);
         currentSha = response.data.sha; // Save SHA for updates
-        return JSON.parse(content);
+
+        const data = JSON.parse(content);
+
+        // Ensure settings exist
+        if (!data.settings) data.settings = {};
+        data.settings = { ...DEFAULT_SETTINGS, ...data.settings };
+
+        return data;
     } catch (error) {
-        // If file not found (404), return empty roadmap structure
+        // If file not found (404), return empty roadmap structure with defaults
         if (error.status === 404) {
-            return { projects: [], meta: { version: 1 } };
+            return {
+                projects: [],
+                meta: { version: 2 },
+                settings: { ...DEFAULT_SETTINGS }
+            };
         }
         throw error;
     }
 };
+
+// Check for updates (Head SHA)
+export const checkUpdates = async () => {
+    if (!octokit) return false;
+    try {
+        const response = await octokit.rest.repos.getContent({
+            owner,
+            repo,
+            path: "roadmap.json",
+        });
+        return response.data.sha !== currentSha;
+    } catch (e) {
+        return false;
+    }
+};
+
 
 // Save roadmap.json
 export const saveRoadmap = async (roadmapData) => {

@@ -1,3 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --bg-color: #111827;
+    --sidebar-color: #1f2937;
+    --text-main: #ffffff;
+    --card-blue: #2563eb;
+}
+
+/* Vibrant Theme (Default Dark) */
+.theme-vibrant {
+    /* Standard Tailwind colors used directly in classes */
+}
+
+/* Business Theme (Muted) */
+.theme-business .bg-gray-900 {
+    background-color: #f3f4f6;
+    /* Light gray background */
+    color: #1e293b;
+}
+
+.theme-business .bg-gray-800 {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-color: #e5e7eb;
+}
+
+.theme-business .text-white {
+    color: #1e293b;
+}
+
+.theme-business .text-gray-300,
+.theme-business .text-gray-400 {
+    color: #4b5563;
+}
+
+.theme-business .border-gray-700 {
+    border-color: #e5e7eb;
+}
+
+/* Muted Bar Colors */
+.theme-business .bg-blue-600 {
+    background-color: #334155;
+}
+
+/* Slate */
+.theme-business .bg-purple-600 {
+    background-color: #475569;
+}
+
+.theme-business .bg-green-600 {
+    background-color: #52525b;
+}
+
+/* Zinc */
+.theme-business .bg-orange-600 {
+    background-color: #64748b;
+}
+
+.theme-business .bg-pink-600 {
+    background-color: #94a3b8;
+}
+
+body {
+    background-color: #111827;
+    color: white;
+}

@@ -1,10 +1,11 @@
 import { dateToPercent } from './dates';
 
 // Calculate start and width percentages for projects
-export const calculateProjectPosition = (project, year) => {
-    const start = dateToPercent(project.startDate, year);
-    const end = dateToPercent(project.endDate, year);
+export const calculateProjectPosition = (project, startYear, startMonth) => {
+    const start = dateToPercent(project.startDate, startYear, startMonth);
+    const end = dateToPercent(project.endDate, startYear, startMonth);
     const width = Math.max(end - start, 0.5); // Minimum width
+
 
     return {
         left: start,

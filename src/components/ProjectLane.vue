@@ -6,15 +6,17 @@ import ProjectCard from './ProjectCard.vue';
 const props = defineProps({
     category: String,
     projects: Array,
-    year: Number
+    startYear: Number,
+    startMonth: Number
 });
 
 const emit = defineEmits(['project-click']);
 
 
 const stackedProjects = computed(() => {
-    return stackProjects(props.projects, props.year);
+    return stackProjects(props.projects, props.startYear, props.startMonth);
 });
+
 
 // Height depends on number of stacked rows (max 4). 
 // 4 rows * 28px = 112px is rough max. 
