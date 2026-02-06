@@ -197,9 +197,15 @@
     {
       "id": "p18",
       "title": "Graph Database Migration",
-      "startDate": "2026-08-01",
-      "endDate": "2026-11-30",
-      "category": "Memory Systems"
+      "startDate": "2026-06-29",
+      "endDate": "2026-12-12",
+      "category": "Memory Systems",
+      "_pos": {
+        "left": 49.60045662100457,
+        "width": 33.15068493150686,
+        "right": 82.75114155251143
+      },
+      "_row": 1
     },
     {
       "id": "p19",
