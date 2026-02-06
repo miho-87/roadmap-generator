@@ -31,7 +31,11 @@ const activeCategories = computed(() => {
 const themeClass = computed(() => {
     return roadmap.value?.settings?.theme === 'business' ? 'theme-business' : 'theme-vibrant';
 });
-const currentYear = ref(new Date().getFullYear());
+
+const now = new Date();
+const startYear = ref(now.getFullYear());
+const startMonth = ref(now.getMonth());
+
 const isPresentationMode = ref(false);
 
 // Modal State
@@ -189,7 +193,7 @@ const logout = () => {
         <div v-if="loading" class="text-center text-gray-400">Loading data...</div>
         
         <div v-else-if="roadmap" id="roadmap-container" class="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 shadow-xl transition-all"
-             :class="{ 'fixed inset-0 z-50 rounded-none border-0 h-screen': isPresentationMode }">
+             :class="{ 'fixed inset-0 z-[40] rounded-none border-0 h-screen': isPresentationMode }">
              <!-- Toolbar -->
              <div class="p-4 bg-gray-800 border-b border-gray-700 flex justify-between items-center" v-if="!isPresentationMode">
                  <div class="flex items-center space-x-4">
