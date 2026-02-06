@@ -75,9 +75,15 @@
     {
       "id": "p4",
       "title": "Long-term Episodic Memory",
-      "startDate": "2026-05-01",
-      "endDate": "2026-08-30",
-      "category": "Memory Systems"
+      "startDate": "2026-03-22",
+      "endDate": "2026-09-22",
+      "category": "Memory Systems",
+      "_pos": {
+        "left": 24.394977168949772,
+        "width": 33.150684931506845,
+        "right": 57.54566210045662
+      },
+      "_row": 0
     },
     {
       "id": "p5",
