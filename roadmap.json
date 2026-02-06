@@ -338,6 +338,19 @@
       "_row": 2
     },
     {
+      "id": "28cb11c0-6668-4000-92d1-0993820a0caa",
+      "title": "fünf",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-21",
+      "category": "Core",
+      "_pos": {
+        "left": 13.436073059360732,
+        "width": 24.93150684931507,
+        "right": 38.3675799086758
+      },
+      "_row": 3
+    },
+    {
       "id": "fe2236f7-bc0e-4522-99cd-a754fd0e5601",
       "title": "abc",
       "startDate": "2026-12-14",
@@ -349,6 +362,20 @@
         "right": 109.05251141552512
       },
       "_row": 0
+    },
+    {
+      "id": "9eb41d1e-765e-4d41-8aa3-8b0c3ba052f5",
+      "title": "sieben",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-21",
+      "category": "Core"
+    },
+    {
+      "id": "7622656a-ecd0-46e1-857e-65a56b279a98",
+      "title": "sieben",
+      "startDate": "2026-03-22",
+      "endDate": "2026-06-21",
+      "category": "Core"
     }
   ]
 }
