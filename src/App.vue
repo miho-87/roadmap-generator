@@ -6,7 +6,7 @@ import TimelineGrid from './components/TimelineGrid.vue';
 import ProjectLane from './components/ProjectLane.vue';
 import ProjectModal from './components/ProjectModal.vue';
 import SettingsModal from './components/SettingsModal.vue';
-import { formatDate, snapToPI } from './utils/dates';
+import { formatDate } from './utils/dates';
 import html2canvas from 'html2canvas';
 
 // CATEGORIES are now dynamic from settings
