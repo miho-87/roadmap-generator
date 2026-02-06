@@ -1,3 +1,4 @@
+<script setup>
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 import { initGitHub, loadRoadmap, saveRoadmap, createSnapshot, checkUpdates } from './services/github';
 
@@ -42,11 +43,7 @@ const openEditProject = (project) => {
 const handleSave = async (projectData) => {
     if (!roadmap.value?.projects) roadmap.value.projects = [];
     
-    if (alignToPI) {
-       // Re-snap if needed (passed from modal would be better, but this works)
-       projectData.startDate = snapToPI(projectData.startDate, roadmap.value.settings);
-       projectData.endDate = snapToPI(projectData.endDate, roadmap.value.settings);
-    }
+
 
     if (editingProject.value) {
 
@@ -237,8 +234,10 @@ const logout = () => {
         <ProjectModal 
             :isOpen="isModalOpen" 
             :project="editingProject"
+            :project="editingProject"
             :year="startYear" 
             :categories="activeCategories"
+            :settings="roadmap.settings"
             @close="isModalOpen = false"
             @save="handleSave"
             @delete="handleDelete"

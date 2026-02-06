@@ -6,6 +6,7 @@ const props = defineProps({
     project: Object, // If null, new project
     year: Number,
     categories: Array,
+    settings: Object,
     isOpen: Boolean
 });
 
@@ -40,8 +41,8 @@ const save = () => {
     let data = { ...form.value };
     
     if (alignToPI.value) {
-        data.startDate = snapToPI(data.startDate, props.year);
-        data.endDate = snapToPI(data.endDate, props.year);
+        data.startDate = snapToPI(data.startDate, props.settings);
+        data.endDate = snapToPI(data.endDate, props.settings);
     }
     
     emit('save', data);
