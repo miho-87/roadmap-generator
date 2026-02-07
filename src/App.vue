@@ -213,24 +213,30 @@ const handleSnapshot = async () => {
 const login = async () => {
   loading.value = true;
   error.value = '';
-  const result = await initGitHub(token.value, repoOwner.value, repoName.value);
   
-  if (result.success) {
-    isAuthenticated.value = true;
-    localStorage.setItem('gh_token', token.value);
-    localStorage.setItem('gh_owner', repoOwner.value);
-    localStorage.setItem('gh_repo', repoName.value);
-    
-    // Load data
-    try {
-        roadmap.value = await loadRoadmap();
-    } catch (e) {
-        error.value = "Failed to load roadmap: " + e.message;
-    }
-  } else {
-    error.value = "Authentication failed. Check your token.";
+  try {
+      const result = await initGitHub(token.value, repoOwner.value, repoName.value);
+      
+      if (result.success) {
+        isAuthenticated.value = true;
+        localStorage.setItem('gh_token', token.value);
+        localStorage.setItem('gh_owner', repoOwner.value);
+        localStorage.setItem('gh_repo', repoName.value);
+        
+        // Load data
+        try {
+            roadmap.value = await loadRoadmap();
+        } catch (e) {
+            error.value = "Failed to load roadmap: " + e.message;
+        }
+      } else {
+        error.value = "Authentication failed. Check your token.";
+      }
+  } catch (err) {
+      error.value = "Unexpected error: " + err.message;
+  } finally {
+      loading.value = false;
   }
-  loading.value = false;
 };
 
 const logout = () => {

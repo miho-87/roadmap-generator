@@ -6,8 +6,20 @@ let repo = '';
 let currentSha = null;
 
 // UTF-8 Clean Base64 Helpers
-const toBase64 = (str) => btoa(unescape(encodeURIComponent(str)));
-const fromBase64 = (str) => decodeURIComponent(escape(atob(str)));
+const toBase64 = (str) => {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function toSolidBytes(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+};
+
+const fromBase64 = (str) => {
+    // Clean input (remove newlines/whitespace)
+    const cleanStr = str.replace(/\s/g, '');
+    return decodeURIComponent(atob(cleanStr).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+};
 
 const DEFAULT_SETTINGS = {
     theme: 'vibrant',
@@ -44,7 +56,13 @@ export const loadRoadmap = async () => {
         });
 
         // Content is base64 encoded
-        const content = fromBase64(response.data.content);
+        let content;
+        try {
+            content = fromBase64(response.data.content);
+        } catch (e) {
+            console.warn("UTF-8 decoding failed, attempting legacy decode...", e);
+            content = atob(response.data.content);
+        }
         currentSha = response.data.sha; // Save SHA for updates
 
         const data = JSON.parse(content);
