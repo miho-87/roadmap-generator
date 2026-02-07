@@ -2,7 +2,8 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    project: Object
+    project: Object,
+    isDimmed: Boolean
 });
 
 const style = computed(() => {
@@ -32,10 +33,15 @@ const colorClass = computed(() => {
 </script>
 
 <template>
-  <div class="absolute h-8 rounded text-sm font-medium text-track-text px-3 py-1 whitespace-nowrap overflow-hidden cursor-pointer shadow-md border border-white/20 transition-all z-20 flex items-center hover:scale-[1.01] hover:shadow-lg"
-       :class="colorClass"
+  <div class="absolute h-8 rounded text-sm font-medium text-track-text px-3 py-1 whitespace-nowrap overflow-hidden cursor-pointer shadow-md border border-white/20 transition-all duration-300 z-20 flex items-center"
+       :class="[
+            colorClass, 
+            isDimmed ? 'opacity-25 grayscale blur-[0.5px]' : 'hover:scale-[1.01] hover:shadow-lg hover:z-30'
+       ]"
        :style="style"
-       :title="project.title + ' (' + project.startDate + ' - ' + project.endDate + ')'">
+       :title="project.title + ' (' + project.startDate + ' - ' + project.endDate + ')'"
+       @click.stop="$emit('focus')"
+       @dblclick.stop="$emit('edit')">
        {{ project.title }}
   </div>
 </template>

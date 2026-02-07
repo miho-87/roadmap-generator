@@ -44,6 +44,49 @@ const now = new Date();
 const startYear = ref(now.getFullYear());
 const startMonth = ref(now.getMonth());
 
+// Focus Mode State
+const focusState = ref({
+    type: null, // 'category' | 'project' | null
+    id: null    // category name | project object (or id)
+});
+
+const toggleCategoryFocus = (category) => {
+    if (focusState.value.type === 'category' && focusState.value.id === category) {
+        clearFocus();
+    } else {
+        focusState.value = { type: 'category', id: category };
+    }
+};
+
+const toggleProjectFocus = (project) => {
+    // If clicking the same project, clear focus
+    if (focusState.value.type === 'project' && focusState.value.id && focusState.value.id.id === project.id) {
+        clearFocus();
+    } else {
+        focusState.value = { type: 'project', id: project };
+    }
+};
+
+const clearFocus = () => {
+    focusState.value = { type: null, id: null };
+};
+
+// Check if a category should be dimmed
+const isCategoryDimmed = (category) => {
+    if (!focusState.value.type) return false; // No focus active
+    if (focusState.value.type === 'category') {
+        return focusState.value.id !== category;
+    }
+    if (focusState.value.type === 'project') {
+        // If a project is focused, dim all categories (or maybe keep the parent category visible? 
+        // User said "focus on project", implying strong focus. Let's dim all categories or maybe keep the parent one?)
+        // Let's dim everything else for strong focus.
+        return true; 
+        // Optional: return focusState.value.id.category !== category; 
+    }
+    return false;
+};
+
 // Snapshot State
 const isSnapshotMode = ref(false);
 const currentSnapshotName = ref('');
@@ -373,17 +416,16 @@ const currentViewDate = computed(() => {
              <div id="roadmap-view" class="flex-1 relative overflow-auto border-t border-app-border h-[calc(100vh-200px)]">
                  <div class="flex min-w-[max-content] min-h-full relative">
                     
-                     <!-- Sidebar (Sticky Left) -->
-                     <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-30 sticky left-0 shadow-lg">
-                         <div class="h-8 border-b border-app-border bg-app-bg/50"></div> <!-- Spacer matches Month Header (h-8) -->
-                         <div class="h-8 border-b border-app-border bg-app-header flex items-center justify-center text-xs font-bold text-app-muted">
-                             Category
-                         </div>
-                         <div v-for="cat in activeCategories" :key="cat" class="h-[148px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted bg-app-header">
-                             {{ cat }}
-                         </div>
+                     <!-- Sidebar (Y-Axis Labels) -->
+                  <div class="w-48 flex-shrink-0 bg-app-header border-r border-app-border z-20 flex flex-col pt-8 shadow-sm">
+                     <div class="h-6 border-b border-app-border bg-app-bg/50"></div> <!-- PI Spacer -->
+                     <div v-for="cat in activeCategories" :key="cat" 
+                          @click="toggleCategoryFocus(cat)"
+                          class="h-[148px] border-b border-app-border flex items-center px-4 text-sm font-semibold text-app-muted cursor-pointer transition-all duration-300 hover:text-app-text hover:bg-app-bg/30"
+                          :class="{ 'opacity-25 grayscale blur-[1px]': isCategoryDimmed(cat), 'bg-app-bg/10 ring-l-4 ring-blue-500 text-app-text': focusState.type === 'category' && focusState.id === cat }">
+                         {{ cat }}
                      </div>
-
+                  </div>
                      <!-- Timeline Content -->
                      <div class="min-w-[1000px] flex-1 relative">
                         <!-- Grid Layer (Background) -->
@@ -392,13 +434,15 @@ const currentViewDate = computed(() => {
                         </div>
                         
                         <!-- Tracks Layer (Foreground) -->
-                        <div class="relative z-10 pt-16">
+                        <div class="relative z-10 pt-14">
                             <ProjectLane v-for="cat in activeCategories" :key="cat" 
                                 :category="cat"
                                 :startYear="startYear"
                                 :startMonth="startMonth"
-                                :projects="roadmap?.projects?.filter(p => p.category === cat) || []"
-                                @project-click="openEditProject"
+                                :projects="getProjectsByCategory(cat)"
+                                :focus-state="focusState"
+                                @project-focus="toggleProjectFocus"
+                                @project-edit="openEditProject"
                             />
                         </div>
                      </div>
